@@ -9,6 +9,7 @@ import classnames, {
   justifyContent,
   padding,
   space,
+  textColor,
 } from 'classnames/tailwind'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 
@@ -19,26 +20,19 @@ const container = classnames(
   alignItems('items-center'),
   space('space-y-2'),
   padding('px-8'),
-  gap('gap-2')
+  gap('gap-2'),
+  textColor('text-white')
 )
+
 export default function () {
   const [token, setToken] = useState<string | null>('')
 
   return (
-    <div
-      className={container}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <div className={container}>
       <KetlLogo />
       <div
         style={{
-          fontFamily: 'Space Grotesk',
           fontSize: 24,
-          color: '#FFFF',
         }}
       >
         Enter your access token
@@ -48,21 +42,17 @@ export default function () {
         onChange={(e) => setToken((e.target as HTMLInputElement).value)}
         placeholder="Your token goes here"
         style={{
-          fontFamily: 'Space Grotesk',
           fontSize: 24,
-          color: '#FFFF',
           backgroundColor: 'transparent',
           resize: 'none',
         }}
-      ></textarea>
+      />
       <button
         style={{
-          fontFamily: 'Space Grotesk',
           fontSize: 16,
           border: '1px solid #FFFF',
           borderRadius: 40,
           padding: '8px 16px',
-          color: '#FFFF',
         }}
         onClick={async () => {
           // Get content of clipboard
@@ -78,12 +68,10 @@ export default function () {
       </button>
       <button
         style={{
-          fontFamily: 'Space Grotesk',
           fontSize: 18,
           background: '#232323',
           borderRadius: '40px',
           padding: '16px 24px',
-          color: '#FFFF',
           width: '100%',
         }}
       >
