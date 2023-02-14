@@ -13,6 +13,17 @@ const root = classnames(
   padding('pb-10', 'py-4'),
   maxWidth('max-w-4xl')
 )
+
 export default function ({ children }: ChildrenProp) {
-  return <div className={root}>{children}</div>
+  return (
+    <div
+      className={root}
+      style={{
+        margin: 0,
+        top: '50%',
+      }}
+    >
+      {children}
+    </div>
+  )
 }
