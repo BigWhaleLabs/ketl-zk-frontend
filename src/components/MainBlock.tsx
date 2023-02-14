@@ -1,5 +1,6 @@
 import { useState } from 'preact/hooks'
 import KetlLogo from 'icons/KetlLogo'
+import Messages from 'models/Messages'
 import classnames, {
   alignItems,
   display,
@@ -9,10 +10,7 @@ import classnames, {
   padding,
   space,
 } from 'classnames/tailwind'
-
-enum Messages {
-  GetClipboard,
-}
+import postWebViewMessage from 'helpers/postWebViewMessage'
 
 const container = classnames(
   display('flex'),
@@ -24,7 +22,7 @@ const container = classnames(
   gap('gap-2')
 )
 export default function () {
-  const [token, setToken] = useState<string>('')
+  const [token, setToken] = useState<string | null>('')
 
   return (
     <div
@@ -46,8 +44,8 @@ export default function () {
         Enter your access token
       </div>
       <textarea
-        value={token}
-        onChange={(e) => setToken(e.target.value)}
+        value={token || ''}
+        onChange={(e) => setToken((e.target as HTMLInputElement).value)}
         placeholder="Your token goes here"
         style={{
           fontFamily: 'Space Grotesk',
@@ -72,7 +70,7 @@ export default function () {
             const text = await navigator.clipboard.readText()
             setToken(text)
           } else {
-            window?.ReactNativeWebView?.postMessage(Messages.GetClipboard)
+            postWebViewMessage(Messages.GetClipboard)
           }
         }}
       >
