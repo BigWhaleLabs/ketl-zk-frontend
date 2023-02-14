@@ -6,6 +6,9 @@ module.exports = {
       zIndex: {
         '-10': '-10',
       },
+      colors: {
+        'night': '#232323',
+      }
     }
   }
 }

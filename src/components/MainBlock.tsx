@@ -3,13 +3,20 @@ import KetlLogo from 'icons/KetlLogo'
 import Messages from 'models/Messages'
 import classnames, {
   alignItems,
+  backgroundColor,
+  borderColor,
+  borderRadius,
+  borderWidth,
   display,
   flexDirection,
+  fontSize,
   gap,
   justifyContent,
   padding,
+  resize,
   space,
   textColor,
+  width,
 } from 'classnames/tailwind'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 
@@ -20,8 +27,33 @@ const container = classnames(
   alignItems('items-center'),
   space('space-y-2'),
   padding('px-8'),
-  gap('gap-2'),
+  gap('gap-2')
+)
+
+const baseFontSize = fontSize('text-2xl')
+
+const textArea = classnames(
+  baseFontSize,
+  backgroundColor('bg-transparent'),
+  resize('resize-none'),
   textColor('text-white')
+)
+
+const button = classnames(
+  fontSize('text-base'),
+  backgroundColor('bg-transparent'),
+  borderWidth('border-2'),
+  borderColor('border-white'),
+  borderRadius('rounded-full'),
+  padding('py-2', 'px-4')
+)
+
+const letsGoButton = classnames(
+  fontSize('text-lg'),
+  backgroundColor('bg-night'),
+  borderRadius('rounded-full'),
+  padding('py-4', 'px-6'),
+  width('w-full')
 )
 
 export default function () {
@@ -30,32 +62,16 @@ export default function () {
   return (
     <div className={container}>
       <KetlLogo />
-      <div
-        style={{
-          fontSize: 24,
-        }}
-      >
-        Enter your access token
-      </div>
+      <div className={baseFontSize}>Enter your access token</div>
       <textarea
         value={token || ''}
-        onChange={(e) => setToken((e.target as HTMLInputElement).value)}
+        onChange={({ target }) => setToken((target as HTMLInputElement).value)}
         placeholder="Your token goes here"
-        style={{
-          fontSize: 24,
-          backgroundColor: 'transparent',
-          resize: 'none',
-        }}
+        className={textArea}
       />
       <button
-        style={{
-          fontSize: 16,
-          border: '1px solid #FFFF',
-          borderRadius: 40,
-          padding: '8px 16px',
-        }}
+        className={button}
         onClick={async () => {
-          // Get content of clipboard
           if (navigator.clipboard.readText) {
             const text = await navigator.clipboard.readText()
             setToken(text)
@@ -66,17 +82,7 @@ export default function () {
       >
         Paste from clipboard
       </button>
-      <button
-        style={{
-          fontSize: 18,
-          background: '#232323',
-          borderRadius: '40px',
-          padding: '16px 24px',
-          width: '100%',
-        }}
-      >
-        Let's go
-      </button>
+      <button className={letsGoButton}>Let's go</button>
     </div>
   )
 }

@@ -6,15 +6,22 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Space Grotesk';
 }
 
 textarea {
   text-align: center;
 }
 
-
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
+}
+
+:root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: 'Space Grotesk';
 }
