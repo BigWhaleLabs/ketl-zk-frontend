@@ -26,6 +26,8 @@ jobs:
       - name: Build code
         run: yarn build
         shell: bash
+        env:
+          VITE_ETH_RPC: ${{ secrets.VITE_ETH_RPC }}
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
