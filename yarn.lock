@@ -1529,6 +1529,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@big-whale-labs/constants@npm:^0.1.39, @big-whale-labs/constants@npm:^0.1.63":
+  version: 0.1.63
+  resolution: "@big-whale-labs/constants@npm:0.1.63"
+  checksum: b42e76460235ea8ea9682b195602570e1f6a197361288dd5172e700cc1c4e4cb022ccde5d702950ea159b9d78ca3952a1555d03279017c7af0a2d23aac8f2e74
+  languageName: node
+  linkType: hard
+
+"@big-whale-labs/ketl-allow-map-contract@npm:^0.0.3":
+  version: 0.0.3
+  resolution: "@big-whale-labs/ketl-allow-map-contract@npm:0.0.3"
+  checksum: 5b547e98d189a99b9b2cf3b0cb53c173e75458bc6f54142dcadb6cc9478f4bf7328510c4cfe121bd1ae0e6f69714258413ecc61d2b7ef696ed079df58a0397da
+  languageName: node
+  linkType: hard
+
+"@big-whale-labs/obss-storage-contract@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@big-whale-labs/obss-storage-contract@npm:0.1.2"
+  dependencies:
+    "@big-whale-labs/constants": ^0.1.39
+    "@big-whale-labs/ketl-allow-map-contract": ^0.0.3
+    "@zk-kit/incremental-merkle-tree": ^1.0.0
+    "@zk-kit/incremental-merkle-tree.sol": ^1.3.3
+    circomlibjs: ^0.1.7
+  checksum: 00408d5a9bce5428b77cd12e9d55641815781ff055c020d4bf94da07b9e33445c03552b242e683a2e8a9dc5be86b1eb2e2108461fbb2e0cc4f2cf767c8f3e673
+  languageName: node
+  linkType: hard
+
 "@colors/colors@npm:^1.5.0":
   version: 1.5.0
   resolution: "@colors/colors@npm:1.5.0"
@@ -3811,6 +3838,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@zk-kit/incremental-merkle-tree.sol@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "@zk-kit/incremental-merkle-tree.sol@npm:1.3.3"
+  checksum: ebb1fbbddda64ab47e5bd19e0aa89004c110a27c910ba6f7d541e388ccc63154cad93e0a60e91f428d9a83f11108ca6fcf5bed3074172956efc0e445ce28e261
+  languageName: node
+  linkType: hard
+
 "@zk-kit/incremental-merkle-tree@npm:^1.0.0":
   version: 1.0.0
   resolution: "@zk-kit/incremental-merkle-tree@npm:1.0.0"
@@ -5043,14 +5077,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"circom_runtime@npm:0.1.22":
-  version: 0.1.22
-  resolution: "circom_runtime@npm:0.1.22"
+"circom_runtime@npm:0.1.21":
+  version: 0.1.21
+  resolution: "circom_runtime@npm:0.1.21"
   dependencies:
-    ffjavascript: 0.2.57
+    ffjavascript: 0.2.56
   bin:
     calcwit: calcwit.js
-  checksum: bf7b2e9f74cd7704ebc45ce686d4df49e58ed09114070a98beaab90e5ff7784d1943468ea3315bd4db638e6a76cda24e8b610aa2cd50be56adb4391e20469366
+  checksum: 3071f1e0fba9a5fb41c940454edb911ce09edfd5d0bd12156ec79045a0bf3ff2cc5b35f46e84e42902ef8bb0a4166f428b75d0ceb363c0d485f1a111b27daba1
   languageName: node
   linkType: hard
 
@@ -6306,6 +6340,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"envalid@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "envalid@npm:7.3.1"
+  dependencies:
+    tslib: 2.3.1
+  checksum: dea10ada13e007f684318474a7dd1b528bbe4ed8ca702918e276d26505bd3807f1e93c4045b7acadd1a4639f207ae4c5375ca0afdff973efab9ea7ead655240f
+  languageName: node
+  linkType: hard
+
 "err-code@npm:^2.0.2":
   version: 2.0.3
   resolution: "err-code@npm:2.0.3"
@@ -7210,7 +7253,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ffjavascript@npm:0.2.57, ffjavascript@npm:^0.2.45, ffjavascript@npm:^0.2.48":
+"ffjavascript@npm:0.2.56":
+  version: 0.2.56
+  resolution: "ffjavascript@npm:0.2.56"
+  dependencies:
+    wasmbuilder: 0.0.16
+    wasmcurves: 0.2.0
+    web-worker: ^1.2.0
+  checksum: d4e02263db4a94d111cdc7c1211ae96769370f5c8c3c338331e0ef99faed7b55e640bedf23fa8a83fc9a77f0e81140ea8f32e392812a00e15ca504221b879a4f
+  languageName: node
+  linkType: hard
+
+"ffjavascript@npm:^0.2.45, ffjavascript@npm:^0.2.48":
   version: 0.2.57
   resolution: "ffjavascript@npm:0.2.57"
   dependencies:
@@ -9483,6 +9537,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ketl-zk-frontend@workspace:."
   dependencies:
+    "@big-whale-labs/constants": ^0.1.63
+    "@big-whale-labs/ketl-allow-map-contract": ^0.0.3
+    "@big-whale-labs/obss-storage-contract": ^0.1.2
     "@esbuild-plugins/node-globals-polyfill": ^0.2.3
     "@preact/preset-vite": ^2.5.0
     "@rollup/plugin-inject": ^5.0.3
@@ -9496,6 +9553,7 @@ __metadata:
     circomlibjs: ^0.1.7
     cross-env: ^7.0.3
     crypto-browserify: ^3.12.0
+    envalid: ^7.3.1
     eslint: ^8.34.0
     eslint-config-prettier: ^8.6.0
     eslint-plugin-import: ^2.27.5
@@ -9511,7 +9569,7 @@ __metadata:
     react-scripts: ^5.0.1
     rollup-plugin-polyfill-node: ^0.12.0
     rollup-plugin-visualizer: ^5.9.0
-    snarkjs: ^0.6.1
+    snarkjs: ^0.5.0
     tailwindcss: ^3.2.6
     tailwindcss-classnames: ^3.0.7
     typescript: ^4.9.5
@@ -11864,15 +11922,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"r1csfile@npm:0.0.45":
-  version: 0.0.45
-  resolution: "r1csfile@npm:0.0.45"
+"r1csfile@npm:0.0.41":
+  version: 0.0.41
+  resolution: "r1csfile@npm:0.0.41"
   dependencies:
     "@iden3/bigarray": 0.0.2
     "@iden3/binfileutils": 0.0.11
     fastfile: 0.0.20
-    ffjavascript: 0.2.57
-  checksum: ae2d7ab3f2c37640aea2b4f45753d1f2258f5d904a51d7aaff67c32a931c3e90d22d257e8f10752044fa36b3ac31516f60e503f858913a625015b9b05575ba47
+    ffjavascript: 0.2.56
+  checksum: eec689416f66f09db2d6ca66fac1ef6841b088ab29abcde487145ebd2110916c92583e11ac86f0cdcc4e8a3a7c7df9ff5352ad959e8ae385d37c3b51cec5cf4d
   languageName: node
   linkType: hard
 
@@ -12842,23 +12900,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snarkjs@npm:^0.6.1":
-  version: 0.6.1
-  resolution: "snarkjs@npm:0.6.1"
+"snarkjs@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "snarkjs@npm:0.5.0"
   dependencies:
     "@iden3/binfileutils": 0.0.11
     bfj: ^7.0.2
     blake2b-wasm: ^2.4.0
-    circom_runtime: 0.1.22
+    circom_runtime: 0.1.21
     ejs: ^3.1.6
     fastfile: 0.0.20
-    ffjavascript: 0.2.57
+    ffjavascript: 0.2.56
     js-sha3: ^0.8.0
     logplease: ^1.2.15
-    r1csfile: 0.0.45
+    r1csfile: 0.0.41
   bin:
     snarkjs: build/cli.cjs
-  checksum: 2c29d6b522e575fa47c9e548eabf3a7437ec8d191f749e0a2b8d399b5a2442c1abc7012f4bd1889fc742574ca97de1c95828851aa078d65c999f0bdf059e6b83
+  checksum: f0233103548bcd0f75b2ff8998ba02437e5131486d126c4a6a31355cd3558c7ce4311e21d5f24ea9ca198d0556e91e63e2ec6aef8da44014c16b29b6a7086ca2
   languageName: node
   linkType: hard
 
@@ -13613,6 +13671,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:2.3.1":
+  version: 2.3.1
+  resolution: "tslib@npm:2.3.1"
+  checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^1.8.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
@@ -13730,6 +13795,7 @@ __metadata:
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
+  checksum: ab417a2f398380c90a6cf5a5f74badd17866adf57f1165617d6a551f059c3ba0a3e4da0d147b3ac5681db9ac76a303c5876394b13b3de75fdd5b1eaa06181c9d
   languageName: node
   linkType: hard
 

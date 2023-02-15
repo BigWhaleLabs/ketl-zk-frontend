@@ -18,6 +18,7 @@ import classnames, {
   textColor,
   width,
 } from 'classnames/tailwind'
+import createProof from 'helpers/createProof'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 
 const container = classnames(
@@ -57,7 +58,15 @@ const letsGoButton = classnames(
 )
 
 export default function () {
-  const [token, setToken] = useState<string | null>('')
+  const [token, setToken] = useState('')
+
+  async function onCreateProof() {
+    if (token)
+      postWebViewMessage({
+        type: Messages.GetProof,
+        data: JSON.stringify(await createProof(token)),
+      })
+  }
 
   return (
     <div className={container}>
@@ -76,13 +85,15 @@ export default function () {
             const text = await navigator.clipboard.readText()
             setToken(text)
           } else {
-            postWebViewMessage(Messages.GetClipboard)
+            postWebViewMessage({ type: Messages.GetClipboard })
           }
         }}
       >
         Paste from clipboard
       </button>
-      <button className={letsGoButton}>Let's go</button>
+      <button className={letsGoButton} onClick={onCreateProof}>
+        Let's go
+      </button>
     </div>
   )
 }
