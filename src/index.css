@@ -7,3 +7,21 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+textarea {
+  text-align: center;
+}
+
+input::placeholder,
+textarea::placeholder {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+:root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: 'Space Grotesk';
+}
