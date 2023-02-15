@@ -1529,10 +1529,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@big-whale-labs/constants@npm:^0.1.39, @big-whale-labs/constants@npm:^0.1.63":
+"@big-whale-labs/constants@npm:^0.1.39":
   version: 0.1.63
   resolution: "@big-whale-labs/constants@npm:0.1.63"
   checksum: b42e76460235ea8ea9682b195602570e1f6a197361288dd5172e700cc1c4e4cb022ccde5d702950ea159b9d78ca3952a1555d03279017c7af0a2d23aac8f2e74
+  languageName: node
+  linkType: hard
+
+"@big-whale-labs/constants@npm:^0.1.64":
+  version: 0.1.64
+  resolution: "@big-whale-labs/constants@npm:0.1.64"
+  checksum: a83d656ac5954e90bb91277d3a4033ed18f57ca5259d1e5fb57b892527370658ac6ed9ee0bf5fe72d0ac9726405fe6d3eb26525af9e8b55e8d3709a5bd1b4916
   languageName: node
   linkType: hard
 
@@ -9491,7 +9498,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ketl-zk-frontend@workspace:."
   dependencies:
-    "@big-whale-labs/constants": ^0.1.63
+    "@big-whale-labs/constants": ^0.1.64
     "@big-whale-labs/ketl-allow-map-contract": ^0.0.3
     "@big-whale-labs/obss-storage-contract": ^0.1.2
     "@esbuild-plugins/node-globals-polyfill": ^0.2.3
@@ -13709,6 +13716,7 @@ __metadata:
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
+  checksum: ab417a2f398380c90a6cf5a5f74badd17866adf57f1165617d6a551f059c3ba0a3e4da0d147b3ac5681db9ac76a303c5876394b13b3de75fdd5b1eaa06181c9d
   languageName: node
   linkType: hard
 
