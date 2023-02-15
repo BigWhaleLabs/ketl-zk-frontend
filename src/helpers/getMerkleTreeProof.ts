@@ -1,7 +1,7 @@
 import { BigNumber } from 'ethers'
 import { IncrementalMerkleTree } from '@zk-kit/incremental-merkle-tree'
 import { buildPoseidon } from 'circomlibjs'
-import { randomBytes } from 'crypto-browserify'
+import { randomBytes } from 'crypto'
 
 export async function getMerkleTreeInputs(
   commitment: bigint | string,

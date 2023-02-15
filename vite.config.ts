@@ -10,7 +10,7 @@ import removeConsole from 'vite-plugin-remove-console'
 
 export default defineConfig({
   plugins: [comlink(), preact(), tsconfigPaths()],
-  resolve: { alias: { assert: 'assert-browserify' } },
+  resolve: { alias: { assert: 'assert-browserify', crypto: 'crypto-browserify' } },
   build: {
     target: 'es2020',
     rollupOptions: {
