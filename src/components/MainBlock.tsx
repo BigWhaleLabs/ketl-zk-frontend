@@ -21,8 +21,6 @@ import classnames, {
   space,
   textAlign,
   textColor,
-  textOpacity,
-  verticalAlign,
   width,
 } from 'classnames/tailwind'
 import createProof from 'helpers/createProof'
