@@ -7,6 +7,6 @@ interface PostMessage {
 
 export default interface WebViewWindow extends Window {
   ReactNativeWebView: {
-    postMessage: (message: PostMessage) => void
+    postMessage: (message: string) => void
   }
 }
