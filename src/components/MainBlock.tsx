@@ -68,7 +68,7 @@ export default function () {
       const proof = await createProof(token)
       postWebViewMessage({
         type: Messages.GetProof,
-        data: JSON.stringify(proof),
+        data: proof,
       })
     } finally {
       setLoading(false)
