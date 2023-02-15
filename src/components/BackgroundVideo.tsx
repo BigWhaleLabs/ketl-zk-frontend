@@ -18,7 +18,7 @@ const videoBackground = classnames(
 
 export default function () {
   return (
-    <video className={videoBackground} muted autoPlay loop>
+    <video className={videoBackground} autoPlay loop>
       <source src="login_screen.mp4" type="video/mp4" />
     </video>
   )
