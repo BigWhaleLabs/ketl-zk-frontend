@@ -79,6 +79,7 @@ export default function () {
   async function onCreateProof() {
     if (!token) return
     try {
+      setError('')
       setLoading(true)
       const proof = await createProof(token)
       postWebViewMessage({
@@ -87,7 +88,11 @@ export default function () {
       })
     } catch (e) {
       console.error(e)
-      setError(e as string)
+      if (typeof e === 'string') {
+        setError(e)
+      } else if (e instanceof Error) {
+        setError(e.message)
+      }
     } finally {
       setLoading(false)
     }
