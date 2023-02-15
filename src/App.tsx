@@ -1,5 +1,4 @@
 import { Redirect, Route, Router, Switch } from 'wouter'
-import BackgroundVideo from 'components/BackgroundVideo'
 import MainBlock from 'components/MainBlock'
 import Root from 'components/Root'
 import classnames, {
@@ -20,7 +19,6 @@ const mainContainer = classnames(
 export default function () {
   return (
     <div className={mainContainer}>
-      <BackgroundVideo />
       <Root>
         <Router hook={useHashLocation}>
           <Switch>

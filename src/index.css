@@ -2,26 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+  outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-textarea {
-  text-align: center;
-}
-
-input::placeholder,
-textarea::placeholder {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-:root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-family: 'Space Grotesk';
+  font-family: 'Space Grotesk', serif;
+  color: white;
+  min-height: 100vh;
 }
