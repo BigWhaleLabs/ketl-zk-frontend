@@ -12,10 +12,17 @@ import classnames, {
   fontSize,
   gap,
   justifyContent,
+  opacity,
+  outlineColor,
   padding,
+  placeholderColor,
+  placeholderOpacity,
   resize,
   space,
+  textAlign,
   textColor,
+  textOpacity,
+  verticalAlign,
   width,
 } from 'classnames/tailwind'
 import createProof from 'helpers/createProof'
@@ -35,12 +42,17 @@ const baseFontSize = fontSize('text-2xl')
 
 const textArea = classnames(
   baseFontSize,
+  padding('pt-6'),
   backgroundColor('bg-transparent'),
   resize('resize-none'),
-  textColor('text-white')
+  textColor('text-white'),
+  placeholderColor('placeholder-gray-400'),
+  placeholderOpacity('!placeholder-opacity-70'),
+  textAlign('text-center'),
+  outlineColor('outline-transparent')
 )
 
-const button = classnames(
+const pasteButton = classnames(
   fontSize('text-base'),
   backgroundColor('bg-transparent'),
   borderWidth('border-2'),
@@ -54,11 +66,14 @@ const letsGoButton = classnames(
   backgroundColor('bg-night'),
   borderRadius('rounded-full'),
   padding('py-4', 'px-6'),
-  width('w-full')
+  width('w-full'),
+  opacity('disabled:opacity-70')
 )
+const errorText = classnames(baseFontSize, textColor('text-red-500'))
 
 export default function () {
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const [token, setToken] = useState('')
 
   async function onCreateProof() {
@@ -70,10 +85,15 @@ export default function () {
         type: Messages.GetProof,
         data: proof,
       })
+    } catch (e) {
+      console.error(e)
+      setError(e as string)
     } finally {
       setLoading(false)
     }
   }
+
+  const disableNextStep = loading || !token.length
 
   return (
     <div className={container}>
@@ -81,14 +101,14 @@ export default function () {
       <div className={baseFontSize}>Enter your access token</div>
       <textarea
         disabled={loading}
-        value={token || ''}
+        value={token}
         onChange={({ target }) => setToken((target as HTMLInputElement).value)}
         placeholder="Your token goes here"
         className={textArea}
       />
       <button
         disabled={loading}
-        className={button}
+        className={pasteButton}
         onClick={async () => {
           if (navigator.clipboard.readText) {
             const text = await navigator.clipboard.readText()
@@ -100,9 +120,16 @@ export default function () {
       >
         Paste from clipboard
       </button>
-      <button className={letsGoButton} onClick={onCreateProof}>
+      <button
+        className={letsGoButton}
+        onClick={onCreateProof}
+        disabled={disableNextStep}
+      >
         {loading ? 'Loading...' : `Let's go`}
       </button>
+      {error ? (
+        <p className={errorText}>Something went wrong: {error}</p>
+      ) : undefined}
     </div>
   )
 }
