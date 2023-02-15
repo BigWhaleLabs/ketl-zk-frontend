@@ -58,14 +58,21 @@ const letsGoButton = classnames(
 )
 
 export default function () {
+  const [loading, setLoading] = useState(false)
   const [token, setToken] = useState('')
 
   async function onCreateProof() {
-    if (token)
+    if (!token) return
+    try {
+      setLoading(true)
+      const proof = await createProof(token)
       postWebViewMessage({
         type: Messages.GetProof,
-        data: JSON.stringify(await createProof(token)),
+        data: JSON.stringify(proof),
       })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -73,12 +80,14 @@ export default function () {
       <KetlLogo />
       <div className={baseFontSize}>Enter your access token</div>
       <textarea
+        disabled={loading}
         value={token || ''}
         onChange={({ target }) => setToken((target as HTMLInputElement).value)}
         placeholder="Your token goes here"
         className={textArea}
       />
       <button
+        disabled={loading}
         className={button}
         onClick={async () => {
           if (navigator.clipboard.readText) {
@@ -92,7 +101,7 @@ export default function () {
         Paste from clipboard
       </button>
       <button className={letsGoButton} onClick={onCreateProof}>
-        Let's go
+        {loading ? 'Loading...' : `Let's go`}
       </button>
     </div>
   )
