@@ -3,6 +3,7 @@ import classnames, {
   height,
   objectFit,
   position,
+  scale,
   width,
   zIndex,
 } from 'classnames/tailwind'
@@ -13,7 +14,8 @@ const videoBackground = classnames(
   height('h-screen'),
   width('w-screen'),
   objectFit('object-cover'),
-  blur('blur')
+  blur('blur'),
+  scale('scale-110')
 )
 
 export default function () {
