@@ -64,7 +64,7 @@ export default function () {
     if (token)
       postWebViewMessage({
         type: Messages.GetProof,
-        data: JSON.stringify(await createProof(token)),
+        data: await createProof(token),
       })
   }
 

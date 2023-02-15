@@ -5,7 +5,7 @@ declare const window: WebViewWindow
 
 interface PostMessage {
   type: Messages
-  data?: string
+  data?: unknown
 }
 
 export default (message: PostMessage) => {
