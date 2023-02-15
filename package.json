@@ -35,7 +35,8 @@
     "snarkjs": "^0.6.1",
     "valtio": "^1.10.2",
     "vite-plugin-comlink": "^3.0.5",
-    "vite-plugin-remove-console": "^2.0.0"
+    "vite-plugin-remove-console": "^2.0.0",
+    "wouter": "^2.10.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",

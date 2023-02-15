@@ -2894,6 +2894,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/plugin-replace@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "@rollup/plugin-replace@npm:5.0.2"
+  dependencies:
+    "@rollup/pluginutils": ^5.0.1
+    magic-string: ^0.27.0
+  peerDependencies:
+    rollup: ^1.20.0||^2.0.0||^3.0.0
+  peerDependenciesMeta:
+    rollup:
+      optional: true
+  checksum: 3a91b5fa2ce5acfe67c1faf8d479585da30f398f29499cf8a2d2153c899af0b2ef0363012db0e6edc2ebbb3d9fad6dd7ad591c9d977c1ae2ca3256b52e86d950
+  languageName: node
+  linkType: hard
+
 "@rollup/pluginutils@npm:^3.1.0":
   version: 3.1.0
   resolution: "@rollup/pluginutils@npm:3.1.0"
@@ -9505,6 +9520,7 @@ __metadata:
     vite-plugin-comlink: ^3.0.5
     vite-plugin-remove-console: ^2.0.0
     vite-tsconfig-paths: ^4.0.5
+    wouter: ^2.10.0
   languageName: unknown
   linkType: soft
 
@@ -13856,7 +13872,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:1.2.0":
+"use-sync-external-store@npm:1.2.0, use-sync-external-store@npm:^1.0.0":
   version: 1.2.0
   resolution: "use-sync-external-store@npm:1.2.0"
   peerDependencies:
@@ -14598,6 +14614,18 @@ __metadata:
     "@types/trusted-types": ^2.0.2
     workbox-core: 6.5.4
   checksum: bc43c8d31908ab564d740eb1041180c0b0ca4d1f0a3ccde59c5764a8f96d7b08edb7df975360fd37c2bec9f3f57ca9de6c7e34fd252aa1a4a075b5b002f74f60
+  languageName: node
+  linkType: hard
+
+"wouter@npm:^2.10.0":
+  version: 2.10.0
+  resolution: "wouter@npm:2.10.0"
+  dependencies:
+    "@rollup/plugin-replace": ^5.0.2
+    use-sync-external-store: ^1.0.0
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 2e4b0e13824238162406cfc6f1ed940218a92a279118e63c69754d478398136a6155974fab38a22e093d39b8be3e62efa76b9b4f58e456dfb11f8e2d851a3892
   languageName: node
   linkType: hard
 
