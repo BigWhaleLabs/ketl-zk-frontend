@@ -1,6 +1,7 @@
 enum Messages {
-  GetClipboard,
-  GetProof,
+  GetClipboard = 'GetClipboard',
+  GetProof = 'GetProof',
+  OpenLink = 'OpenLink',
 }
 
 export default Messages

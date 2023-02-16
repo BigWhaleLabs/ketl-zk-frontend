@@ -1,4 +1,5 @@
 import { useState } from 'preact/hooks'
+import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
 import Messages from 'models/Messages'
 import classnames, {
@@ -130,6 +131,7 @@ export default function () {
       >
         {loading ? 'Loading...' : `Let's go`}
       </button>
+      <Description />
       {error ? (
         <p className={errorText}>Something went wrong: {error}</p>
       ) : undefined}
