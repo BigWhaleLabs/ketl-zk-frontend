@@ -2,7 +2,10 @@ import { useState } from 'preact/hooks'
 import AvailableStepFlow from 'models/AvailableStepFlow'
 import Messages from 'models/Messages'
 import classnames, {
+  borderColor,
+  borders,
   fontSize,
+  padding,
   textAlign,
   textColor,
   textDecoration,
@@ -12,6 +15,12 @@ import classnames, {
 import postWebViewMessage from 'helpers/postWebViewMessage'
 
 const description = classnames(fontSize('text-sm'), textAlign('text-center'))
+const wrapper = classnames(
+  description,
+  padding('pt-4'),
+  borders('border-t'),
+  borderColor('border-gray-400')
+)
 const descriptionLink = (active?: boolean) =>
   classnames(
     description,
@@ -37,7 +46,7 @@ export default function () {
   })
 
   return (
-    <div className={description}>
+    <div className={wrapper}>
       By entering a token, you accept the{' '}
       <span
         className={descriptionLink(touch === 'terms')}
