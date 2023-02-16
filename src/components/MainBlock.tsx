@@ -98,9 +98,11 @@ export default function () {
   }
 
   useEffect(() => {
-    window.addEventListener('message', (message) => setToken(message.data))
-    return () =>
-      window.addEventListener('message', (message) => setToken(message.data))
+    const handleMessage = (message: MessageEvent<string>) =>
+      setToken(message.data)
+
+    window.addEventListener('message', handleMessage)
+    return () => window.removeEventListener('message', handleMessage)
   }, [])
 
   const disableNextStep = loading || !token.length
