@@ -17,10 +17,10 @@ function parsePostLogData({
 }
 
 export default async function (type: AllowListType) {
-  const vcAllowMap = await getAllowList(type)
+  const allowMap = await getAllowList(type)
 
-  const transactions = await vcAllowMap.queryFilter(
-    vcAllowMap.filters.TokenHashesAdded()
+  const transactions = await allowMap.queryFilter(
+    allowMap.filters.TokenHashesAdded()
   )
 
   return transactions
