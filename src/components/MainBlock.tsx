@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
 import Messages from 'models/Messages'
@@ -97,6 +97,14 @@ export default function () {
     }
   }
 
+  useEffect(() => {
+    const handleMessage = (message: MessageEvent<string>) =>
+      setToken(message.data)
+
+    window.addEventListener('message', handleMessage)
+    return () => window.removeEventListener('message', handleMessage)
+  }, [])
+
   const disableNextStep = loading || !token.length
 
   return (
@@ -113,13 +121,8 @@ export default function () {
       <button
         disabled={loading}
         className={pasteButton}
-        onClick={async () => {
-          if (navigator.clipboard.readText) {
-            const text = await navigator.clipboard.readText()
-            setToken(text)
-          } else {
-            postWebViewMessage({ type: Messages.GetClipboard })
-          }
+        onClick={() => {
+          postWebViewMessage({ type: Messages.GetClipboard })
         }}
       >
         Paste from clipboard
