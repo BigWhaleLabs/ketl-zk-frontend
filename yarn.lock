@@ -1550,16 +1550,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@big-whale-labs/obss-storage-contract@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@big-whale-labs/obss-storage-contract@npm:0.1.2"
+"@big-whale-labs/obss-storage-contract@npm:0.1.3":
+  version: 0.1.3
+  resolution: "@big-whale-labs/obss-storage-contract@npm:0.1.3"
   dependencies:
     "@big-whale-labs/constants": ^0.1.39
     "@big-whale-labs/ketl-allow-map-contract": ^0.0.3
     "@zk-kit/incremental-merkle-tree": ^1.0.0
     "@zk-kit/incremental-merkle-tree.sol": ^1.3.3
     circomlibjs: ^0.1.7
-  checksum: 00408d5a9bce5428b77cd12e9d55641815781ff055c020d4bf94da07b9e33445c03552b242e683a2e8a9dc5be86b1eb2e2108461fbb2e0cc4f2cf767c8f3e673
+  checksum: b5d5e939888d0ee3df92d659283b0e5178edbfe4d030fa03a0c32557b18ef9a025e5ae0edc0ec6f10ec026dd08c998e57b27c6c6e8f97361412baa957656b9c7
   languageName: node
   linkType: hard
 
@@ -9500,7 +9500,7 @@ __metadata:
   dependencies:
     "@big-whale-labs/constants": ^0.1.64
     "@big-whale-labs/ketl-allow-map-contract": ^0.0.3
-    "@big-whale-labs/obss-storage-contract": ^0.1.2
+    "@big-whale-labs/obss-storage-contract": 0.1.3
     "@esbuild-plugins/node-globals-polyfill": ^0.2.3
     "@preact/preset-vite": ^2.5.0
     "@rollup/plugin-inject": ^5.0.3

@@ -12,13 +12,15 @@ export default async function (
   for (const type of ['vc', 'founder'] as AllowListType[]) {
     try {
       const hashes = await fetchAllHashes(type)
-      const proof = snarkjs.groth16.fullProve(
+      const proof = await snarkjs.groth16.fullProve(
         await getAllowMapInput(token, hashes),
         'zk/AllowMapChecker.wasm',
         'zk/AllowMapChecker_final.zkey'
       )
       return { proof, type }
-    } catch (e) {}
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   return Promise.reject(new Error(`Can't generate valid proof with this token`))
