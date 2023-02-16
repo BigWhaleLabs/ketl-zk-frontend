@@ -33,8 +33,7 @@ const container = classnames(
   alignItems('items-center'),
   space('space-y-2'),
   padding('px-8'),
-  gap('gap-2'),
-  backgroundColor('bg-black')
+  gap('gap-2')
 )
 
 const baseFontSize = fontSize('text-2xl')
