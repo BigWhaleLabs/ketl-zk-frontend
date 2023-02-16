@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'preact/hooks'
+import { useEffect, useMemo, useState } from 'preact/hooks'
 import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
+import Loader from 'icons/Loader'
 import Messages from 'models/Messages'
 import classnames, {
   alignItems,
@@ -25,6 +26,7 @@ import classnames, {
   width,
 } from 'classnames/tailwind'
 import createProof from 'helpers/createProof'
+import handleError from 'helpers/handleError'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 
 const container = classnames(
@@ -61,6 +63,10 @@ const pasteButton = classnames(
 )
 
 const letsGoButton = classnames(
+  display('flex'),
+  justifyContent('justify-center'),
+  alignItems('items-center'),
+  gap('gap-2'),
   fontSize('text-lg'),
   backgroundColor('bg-night'),
   borderRadius('rounded-full'),
@@ -68,7 +74,10 @@ const letsGoButton = classnames(
   width('w-full'),
   opacity('disabled:opacity-70')
 )
-const errorText = classnames(baseFontSize, textColor('text-red-500'))
+const errorText = classnames(
+  textColor('text-red-500'),
+  textAlign('text-center')
+)
 
 export default function () {
   const [loading, setLoading] = useState(false)
@@ -110,6 +119,7 @@ export default function () {
   }, [])
 
   const disableNextStep = loading || !token.length
+  const hasToken = useMemo(() => !!token.length, [token])
 
   return (
     <div className={container}>
@@ -125,31 +135,28 @@ export default function () {
         placeholder="Your token goes here"
         className={textArea}
       />
-      <button
-        disabled={loading}
-        className={pasteButton}
-        onClick={async () => {
-          if (navigator.clipboard.readText) {
-            const text = await navigator.clipboard.readText()
-            onChangeText(text)
-          } else {
-            postWebViewMessage({ type: Messages.GetClipboard })
-          }
-        }}
-      >
-        Paste from clipboard
-      </button>
+      {!loading && (
+        <button
+          disabled={loading}
+          className={pasteButton}
+          onClick={() => {
+            hasToken
+              ? setToken('')
+              : postWebViewMessage({ type: Messages.GetClipboard })
+          }}
+        >
+          {hasToken ? 'Clear token' : 'Paste from clipboard'}
+        </button>
+      )}
       <button
         className={letsGoButton}
         onClick={onCreateProof}
         disabled={disableNextStep}
       >
-        {loading ? 'Loading...' : `Let's go`}
+        {loading ? 'Loading...' : `Let's go`} {loading && <Loader />}
       </button>
+      {error && <p className={errorText}>{handleError(error)}</p>}
       <Description />
-      {error ? (
-        <p className={errorText}>Something went wrong: {error}</p>
-      ) : undefined}
     </div>
   )
 }
