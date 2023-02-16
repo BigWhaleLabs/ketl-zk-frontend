@@ -33,14 +33,13 @@ export default function getMerkleTreeProof(
   return tree.createProof(tree.indexOf(commitment))
 }
 
-export async function getAllowMapInput(token: string) {
+export async function getAllowMapInput(token: string, hashes: string[]) {
   const poseidon = await buildPoseidon()
   function hashFunc(values: string[]) {
     const F = poseidon.F
     return F.toString(poseidon(values))
   }
   const hashedToken = hashFunc([token])
-  const hashes = await fetchAllHashes()
 
   return {
     leaf: hashedToken.toString(),

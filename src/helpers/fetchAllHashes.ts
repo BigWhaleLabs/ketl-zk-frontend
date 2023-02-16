@@ -1,7 +1,6 @@
-import { KetlAllowMap__factory } from '@big-whale-labs/ketl-allow-map-contract'
+import { AllowListType } from 'models/AllowListType'
 import { utils } from 'ethers'
-import defaultProvider from 'helpers/defaultProvider'
-import getObssContract from 'helpers/getObssContract'
+import getAllowList from 'helpers/getAllowList'
 
 const transferEventInterface = new utils.Interface([
   `event TokenHashesAdded(uint256[] tokenHashes, bytes32 newMerkleRoot)`,
@@ -17,14 +16,8 @@ function parsePostLogData({
   return transferEventInterface.parseLog({ data, topics })
 }
 
-export default async function () {
-  const obssContract = getObssContract()
-
-  const vcAllowMapAddress = await obssContract.vcAllowMap()
-  const vcAllowMap = KetlAllowMap__factory.connect(
-    vcAllowMapAddress,
-    defaultProvider
-  )
+export default async function (type: AllowListType) {
+  const vcAllowMap = await getAllowList(type)
 
   const transactions = await vcAllowMap.queryFilter(
     vcAllowMap.filters.TokenHashesAdded()
