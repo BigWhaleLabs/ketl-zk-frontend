@@ -93,10 +93,10 @@ export default function () {
     try {
       setError('')
       setLoading(true)
-      const proof = await createProof(token)
+      const data = await createProof(token)
       postWebViewMessage({
         type: Messages.GetProof,
-        data: proof,
+        data,
       })
     } catch (e) {
       console.error(e)

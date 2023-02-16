@@ -1,7 +1,6 @@
 import { BigNumber } from 'ethers'
 import { IncrementalMerkleTree } from '@zk-kit/incremental-merkle-tree'
 import { buildPoseidon } from 'circomlibjs'
-import fetchAllHashes from 'helpers/fetchAllHashes'
 
 export async function getMerkleTreeInputs(
   hashFunc: (values: string[]) => string | number | bigint | boolean,
@@ -33,17 +32,16 @@ export default function getMerkleTreeProof(
   return tree.createProof(tree.indexOf(commitment))
 }
 
-export async function getAllowMapInput(token: string) {
+export async function getAllowMapInput(token: string, hashes: string[]) {
   const poseidon = await buildPoseidon()
   function hashFunc(values: string[]) {
     const F = poseidon.F
     return F.toString(poseidon(values))
   }
   const hashedToken = hashFunc([token])
-  const hashes = await fetchAllHashes()
 
   return {
-    leaf: hashedToken.toString(),
+    leaf: token.toString(),
     ...(await getMerkleTreeInputs(hashFunc, hashedToken, hashes)),
   }
 }
