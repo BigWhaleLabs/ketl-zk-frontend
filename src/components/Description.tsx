@@ -22,7 +22,7 @@ const descriptionLink = (active?: boolean) =>
   )
 
 export default function () {
-  const [touch, setTouch] = useState<string | null>()
+  const [touch, setTouch] = useState<AvailableStepFlow | null>()
 
   const onClickLink = (link: AvailableStepFlow) => {
     postWebViewMessage({
