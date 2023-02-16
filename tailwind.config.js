@@ -7,8 +7,10 @@ module.exports = {
         '-10': '-10',
       },
       colors: {
-        'night': '#232323',
-      }
-    }
-  }
+        night: '#232323',
+        link: '#15A1FC',
+        'link-hover': '#0E7DB5',
+      },
+    },
+  },
 }

@@ -277,6 +277,8 @@ export type TBackgroundColor =
   | 'bg-rose-800'
   | 'bg-rose-900'
   | 'bg-night'
+  | 'bg-link'
+  | 'bg-link-hover'
 
 export type TBackgroundPosition =
   | 'bg-bottom'
@@ -981,6 +983,12 @@ export type TGradientColorStops =
   | 'from-night'
   | 'via-night'
   | 'to-night'
+  | 'from-link'
+  | 'via-link'
+  | 'to-link'
+  | 'from-link-hover'
+  | 'via-link-hover'
+  | 'to-link-hover'
 
 export type TBackgrounds =
   | TBackgroundAttachment
@@ -2588,6 +2596,16 @@ export type TBorderColor =
   | 'border-r-night'
   | 'border-b-night'
   | 'border-l-night'
+  | 'border-link'
+  | 'border-t-link'
+  | 'border-r-link'
+  | 'border-b-link'
+  | 'border-l-link'
+  | 'border-link-hover'
+  | 'border-t-link-hover'
+  | 'border-r-link-hover'
+  | 'border-b-link-hover'
+  | 'border-l-link-hover'
 
 export type TBorderOpacity =
   | 'border-opacity-0'
@@ -3211,6 +3229,8 @@ export type TRingColor =
   | 'ring-rose-800'
   | 'ring-rose-900'
   | 'ring-night'
+  | 'ring-link'
+  | 'ring-link-hover'
 
 export type TRingWidth =
   | 'ring-0'
@@ -3466,6 +3486,8 @@ export type TRingOffsetColor =
   | 'ring-offset-rose-800'
   | 'ring-offset-rose-900'
   | 'ring-offset-night'
+  | 'ring-offset-link'
+  | 'ring-offset-link-hover'
 
 export type TRingOffsetWidth =
   | 'ring-offset-0'
@@ -3715,6 +3737,8 @@ export type TOutlineColor =
   | 'outline-rose-800'
   | 'outline-rose-900'
   | 'outline-night'
+  | 'outline-link'
+  | 'outline-link-hover'
 
 export type TBorders =
   | TBorderStyle
@@ -4015,6 +4039,8 @@ export type TBoxShadowColor =
   | 'shadow-rose-800'
   | 'shadow-rose-900'
   | 'shadow-night'
+  | 'shadow-link'
+  | 'shadow-link-hover'
 
 export type TOpacity =
   | 'opacity-0'
@@ -5560,6 +5586,8 @@ export type TCaretColor =
   | 'caret-rose-800'
   | 'caret-rose-900'
   | 'caret-night'
+  | 'caret-link'
+  | 'caret-link-hover'
 
 export type TWillChange =
   | 'will-change-auto'
@@ -5795,6 +5823,8 @@ export type TAccentColor =
   | 'accent-rose-900'
   | 'accent-auto'
   | 'accent-night'
+  | 'accent-link'
+  | 'accent-link-hover'
 
 export type TScrollPadding =
   | 'scroll-p-0'
@@ -7022,6 +7052,8 @@ export type TFill =
   | 'fill-pink'
   | 'fill-rose'
   | 'fill-night'
+  | 'fill-link'
+  | 'fill-link-hover'
 
 export type TStroke =
   | 'stroke-inherit'
@@ -7052,6 +7084,8 @@ export type TStroke =
   | 'stroke-pink'
   | 'stroke-rose'
   | 'stroke-night'
+  | 'stroke-link'
+  | 'stroke-link-hover'
 
 export type TStrokeWidth = 'stroke-0' | 'stroke-1' | 'stroke-2'
 
@@ -7561,6 +7595,8 @@ export type TPlaceholderColor =
   | 'placeholder-rose-800'
   | 'placeholder-rose-900'
   | 'placeholder-night'
+  | 'placeholder-link'
+  | 'placeholder-link-hover'
 
 export type TPlaceholderOpacity =
   | 'placeholder-opacity-0'
@@ -7806,6 +7842,8 @@ export type TTextColor =
   | 'text-rose-800'
   | 'text-rose-900'
   | 'text-night'
+  | 'text-link'
+  | 'text-link-hover'
 
 export type TTextOpacity =
   | 'text-opacity-0'
@@ -8090,6 +8128,8 @@ export type TTextDecorationColor =
   | 'decoration-rose-800'
   | 'decoration-rose-900'
   | 'decoration-night'
+  | 'decoration-link'
+  | 'decoration-link-hover'
 
 export type TTextDecorationThickness =
   | 'decoration-0'
