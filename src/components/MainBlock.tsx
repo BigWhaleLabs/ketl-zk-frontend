@@ -74,6 +74,10 @@ export default function () {
   const [error, setError] = useState('')
   const [token, setToken] = useState('')
 
+  function onChangeText(text: string) {
+    setToken(text.replace(/[^0-9.]/gi, ''))
+  }
+
   async function onCreateProof() {
     if (!token) return
     try {
@@ -102,10 +106,13 @@ export default function () {
     <div className={container}>
       <KetlLogo />
       <div className={baseFontSize}>Enter your access token</div>
-      <textarea
+      <input
         disabled={loading}
         value={token}
-        onChange={({ target }) => setToken((target as HTMLInputElement).value)}
+        pattern="[0-9]*"
+        onChange={({ target }) =>
+          onChangeText((target as HTMLInputElement).value)
+        }
         placeholder="Your token goes here"
         className={textArea}
       />
@@ -115,7 +122,7 @@ export default function () {
         onClick={async () => {
           if (navigator.clipboard.readText) {
             const text = await navigator.clipboard.readText()
-            setToken(text)
+            onChangeText(text)
           } else {
             postWebViewMessage({ type: Messages.GetClipboard })
           }
