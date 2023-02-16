@@ -1,8 +1,9 @@
+import { AllowListType } from 'models/AllowListType'
 import { KetlAllowMap__factory } from '@big-whale-labs/ketl-allow-map-contract'
 import defaultProvider from 'helpers/defaultProvider'
 import getObssContract from 'helpers/getObssContract'
 
-export default async function (type: 'vc' | 'founder') {
+export default async function (type: AllowListType) {
   const obssContract = getObssContract()
 
   const vcAllowMapAddress =
