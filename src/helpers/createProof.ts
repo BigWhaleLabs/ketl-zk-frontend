@@ -1,5 +1,5 @@
-import { AllowListType } from 'models/AllowListType'
 import { getAllowMapInput } from 'helpers/getMerkleTreeProof'
+import AllowListType from 'models/AllowListType'
 import ProofResult from 'models/ProofResult'
 import fetchAllHashes from 'helpers/fetchAllHashes'
 
@@ -9,7 +9,10 @@ declare const snarkjs: any
 export default async function (
   token: string
 ): Promise<{ proof: ProofResult; type: AllowListType }> {
-  for (const type of ['vc', 'founder'] as AllowListType[]) {
+  for (const type of [
+    AllowListType.vc,
+    AllowListType.founder,
+  ] as AllowListType[]) {
     try {
       const hashes = await fetchAllHashes(type)
       const proof = await snarkjs.groth16.fullProve(

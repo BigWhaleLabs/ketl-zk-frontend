@@ -1,5 +1,5 @@
-import { AllowListType } from 'models/AllowListType'
 import { utils } from 'ethers'
+import AllowListType from 'models/AllowListType'
 import getAllowList from 'helpers/getAllowList'
 
 const transferEventInterface = new utils.Interface([

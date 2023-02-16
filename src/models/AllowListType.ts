@@ -1,1 +1,6 @@
-export type AllowListType = 'vc' | 'founder'
+enum AllowListType {
+  vc,
+  founder,
+}
+
+export default AllowListType
