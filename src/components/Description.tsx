@@ -38,7 +38,7 @@ export default function () {
 
   return (
     <div className={description}>
-      By connecting a wallet, you accept the{' '}
+      By entering a token, you accept the{' '}
       <span
         className={descriptionLink(touch === 'terms')}
         {...spanOptions('terms')}
