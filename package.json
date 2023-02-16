@@ -23,7 +23,7 @@
     ]
   },
   "dependencies": {
-    "@big-whale-labs/constants": "^0.1.64",
+    "@big-whale-labs/constants": "^0.1.66",
     "@big-whale-labs/ketl-allow-map-contract": "^0.0.3",
     "@big-whale-labs/obss-storage-contract": "0.1.3",
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
