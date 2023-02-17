@@ -53,14 +53,16 @@ const textArea = classnames(
   outlineColor('outline-transparent')
 )
 
-const pasteButton = classnames(
-  fontSize('text-base'),
-  backgroundColor('bg-transparent'),
-  borderWidth('border-2'),
-  borderColor('border-white'),
-  borderRadius('rounded-full'),
-  padding('py-2', 'px-4')
-)
+const pasteButton = (active: boolean) =>
+  classnames(
+    fontSize('text-base'),
+    backgroundColor('bg-transparent'),
+    borderWidth('border-2'),
+    borderColor(active ? 'border-gray-400' : 'border-white'),
+    textColor(active ? 'text-gray-400' : 'text-white'),
+    borderRadius('rounded-full'),
+    padding('py-2', 'px-4')
+  )
 
 const letsGoButton = classnames(
   display('flex'),
@@ -83,6 +85,7 @@ export default function () {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [token, setToken] = useState('')
+  const [paste, setPaste] = useState(false)
 
   function onChangeText(text: string) {
     setToken(text.replace(/[^0-9.]/gi, ''))
@@ -110,11 +113,25 @@ export default function () {
   }
 
   useEffect(() => {
-    const handleMessage = (message: MessageEvent<string>) =>
-      setToken(message.data)
+    const handleMessage = (message: unknown) => {
+      if (typeof message !== 'object' || !message || !('data' in message))
+        return
+      setToken(message.data as string)
+    }
 
-    window.addEventListener('message', handleMessage)
-    return () => window.removeEventListener('message', handleMessage)
+    if (navigator.userAgent.includes('Android')) {
+      document.addEventListener('message', handleMessage)
+    } else {
+      window.addEventListener('message', handleMessage)
+    }
+    return () => {
+      window.onmessage = handleMessage
+      if (navigator.userAgent.includes('Android')) {
+        document.removeEventListener('message', handleMessage)
+      } else {
+        window.removeEventListener('message', handleMessage)
+      }
+    }
   }, [])
 
   const disableNextStep = loading || !token.length
@@ -137,7 +154,9 @@ export default function () {
       {!loading && (
         <button
           disabled={loading}
-          className={pasteButton}
+          className={pasteButton(paste)}
+          onTouchStart={() => setPaste(true)}
+          onTouchEnd={() => setPaste(false)}
           onClick={() => {
             hasToken
               ? setToken('')
