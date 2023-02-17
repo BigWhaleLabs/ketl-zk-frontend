@@ -100,13 +100,12 @@ export default function () {
       })
     } catch (e) {
       console.error(e)
+      setLoading(false)
       if (typeof e === 'string') {
         setError(e)
       } else if (e instanceof Error) {
         setError(e.message)
       }
-    } finally {
-      setLoading(false)
     }
   }
 
