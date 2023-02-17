@@ -106,7 +106,7 @@ export default function () {
     <div className={container}>
       <KetlLogo />
       <div className={baseFontSize}>Enter your access token</div>
-      <input
+      <textarea
         disabled={loading}
         value={token}
         pattern="[0-9]*"
