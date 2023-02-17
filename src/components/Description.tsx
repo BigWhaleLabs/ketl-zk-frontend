@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks'
-import AvailableStepFlow from 'models/AvailableStepFlow'
+import AvailableScreen from 'models/AvailableScreen'
 import Messages from 'models/Messages'
 import classnames, {
   borderColor,
@@ -31,33 +31,33 @@ const descriptionLink = (active?: boolean) =>
   )
 
 export default function () {
-  const [touch, setTouch] = useState<AvailableStepFlow | null>()
+  const [touch, setTouch] = useState<AvailableScreen | null>()
 
-  const onClickLink = (link: AvailableStepFlow) => {
+  const onClickLink = (link: AvailableScreen) => {
     postWebViewMessage({
       type: Messages.OpenLink,
       data: link,
     })
   }
-  const spanOptions = (flow: AvailableStepFlow) => ({
-    onTouchStart: () => setTouch(flow),
+  const spanOptions = (screen: AvailableScreen) => ({
+    onTouchStart: () => setTouch(screen),
     onTouchEnd: () => setTouch(null),
-    onClick: () => onClickLink(flow),
+    onClick: () => onClickLink(screen),
   })
 
   return (
     <div className={wrapper}>
       By entering a token, you accept the{' '}
       <span
-        className={descriptionLink(touch === 'terms')}
-        {...spanOptions('terms')}
+        className={descriptionLink(touch === 'Terms')}
+        {...spanOptions('Terms')}
       >
         terms of service
       </span>{' '}
       and{' '}
       <span
-        className={descriptionLink(touch === 'privacy')}
-        {...spanOptions('privacy')}
+        className={descriptionLink(touch === 'Privacy')}
+        {...spanOptions('Privacy')}
       >
         privacy policy
       </span>
