@@ -88,6 +88,7 @@ export default function () {
         type: Messages.GetProof,
         data,
       })
+      setToken('')
     } catch (e) {
       console.error(e)
       if (typeof e === 'string') {
