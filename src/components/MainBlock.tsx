@@ -1,8 +1,10 @@
+import { ChangeEvent } from 'preact/compat'
 import { useEffect, useMemo, useState } from 'preact/hooks'
 import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
 import Loader from 'icons/Loader'
 import Messages from 'models/Messages'
+import TextareaAutosize from 'react-textarea-autosize'
 import classnames, {
   alignItems,
   backgroundColor,
@@ -124,15 +126,17 @@ export default function () {
     <div className={container}>
       <KetlLogo />
       <div className={baseFontSize}>Enter your access token</div>
-      <textarea
-        disabled={loading}
-        value={token}
+      <TextareaAutosize
         pattern="[0-9]*"
-        onChange={({ target }) =>
-          onChangeText((target as HTMLInputElement).value)
-        }
         placeholder="Your token goes here"
+        minRows={2}
+        maxRows={5}
+        value={token}
+        disabled={loading}
         className={textArea}
+        onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
+          onChangeText(event.currentTarget.value)
+        }}
       />
       {!loading && (
         <button

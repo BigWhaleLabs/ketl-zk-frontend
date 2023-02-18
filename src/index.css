@@ -23,3 +23,7 @@ body {
   color: white;
   min-height: 100vh;
 }
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
