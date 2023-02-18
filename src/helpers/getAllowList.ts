@@ -7,7 +7,7 @@ export default async function (type: AllowListType) {
   const obssContract = getObssContract()
 
   const vcAllowMapAddress =
-    type === AllowListType.vc
+    type === AllowListType.VC
       ? await obssContract.vcAllowMap()
       : await obssContract.founderAllowMap()
 

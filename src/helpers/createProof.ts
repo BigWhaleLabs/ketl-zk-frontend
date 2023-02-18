@@ -10,8 +10,8 @@ export default async function (
   token: string
 ): Promise<{ proof: ProofResult; type: AllowListType }> {
   for (const type of [
-    AllowListType.vc,
-    AllowListType.founder,
+    AllowListType.VC,
+    AllowListType.Founder,
   ] as AllowListType[]) {
     try {
       const hashes = await fetchAllHashes(type)
