@@ -1,6 +1,6 @@
 enum AllowListType {
-  vc = 'vc',
-  founder = 'founder',
+  VC = 'VC',
+  Founder = 'Founder',
 }
 
 export default AllowListType
