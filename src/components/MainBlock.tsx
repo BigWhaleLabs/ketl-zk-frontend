@@ -88,6 +88,7 @@ export default function () {
   const [error, setError] = useState('')
   const [token, setToken] = useState('')
   const [paste, setPaste] = useState(false)
+  const [pastingAttempts, setPastingAttempts] = useState(0)
 
   function onChangeText(text: string) {
     setToken(text.replace(/[^0-9.]/gi, ''))
@@ -104,6 +105,7 @@ export default function () {
         data,
       })
       setToken('')
+      setPastingAttempts(0)
     } catch (e) {
       console.error(e)
       setLoading(false)
@@ -142,7 +144,7 @@ export default function () {
 
   return (
     <div className={container}>
-      <KetlLogo />
+      <h1 style={{ fontSize: '32px' }}>Kekl</h1>
       <div className={baseFontSize}>Enter your access token</div>
       <TextareaAutosize
         pattern="[0-9]*"
@@ -163,14 +165,19 @@ export default function () {
           onTouchStart={() => setPaste(true)}
           onTouchEnd={() => setPaste(false)}
           onClick={() => {
-            hasToken
-              ? setToken('')
-              : postWebViewMessage({ type: Messages.GetClipboard })
+            if (hasToken) {
+              setToken('')
+              setPastingAttempts(0)
+              return
+            }
+            setPastingAttempts(pastingAttempts + 1)
+            postWebViewMessage({ type: Messages.GetClipboard })
           }}
         >
           {hasToken ? 'Clear token' : 'Paste from clipboard'}
         </button>
       )}
+      {pastingAttempts > 0 && !token && <p>You might need to paste twice</p>}
       <button
         className={letsGoButton}
         onClick={onCreateProof}
