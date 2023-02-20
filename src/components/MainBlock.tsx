@@ -144,7 +144,7 @@ export default function () {
 
   return (
     <div className={container}>
-      <h1 style={{ fontSize: '32px' }}>Kekl</h1>
+      <KetlLogo />
       <div className={baseFontSize}>Enter your access token</div>
       <TextareaAutosize
         pattern="[0-9]*"
