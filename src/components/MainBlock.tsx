@@ -104,7 +104,6 @@ export default function () {
         type: Messages.GetProof,
         data,
       })
-      setToken('')
       setPastingAttempts(0)
     } catch (e) {
       console.error(e)
@@ -121,7 +120,9 @@ export default function () {
     const handleMessage = (message: unknown) => {
       if (typeof message !== 'object' || !message || !('data' in message))
         return
-      setToken(message.data as string)
+      const { data } = message as { data: string }
+      if (data === 'success') setToken('')
+      else setToken(data)
     }
 
     if (navigator.userAgent.includes('Android')) {
