@@ -1,6 +1,7 @@
 import { getAllowMapInput } from 'helpers/getMerkleTreeProof'
 import AllowListType from 'models/AllowListType'
 import ProofResult from 'models/ProofResult'
+import checkIfProofUsedBefore from 'helpers/checkIfProofUsedBefore'
 import fetchAllHashes from 'helpers/fetchAllHashes'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,6 +21,10 @@ export default async function (
         'zk/AllowMapChecker.wasm',
         'zk/AllowMapChecker_final.zkey'
       )
+
+      if (await checkIfProofUsedBefore(type, proof.publicSignals[1])) {
+        return Promise.reject(new Error(`This token has already been used!`))
+      }
       return { proof, type }
     } catch (e) {
       console.error(e)
