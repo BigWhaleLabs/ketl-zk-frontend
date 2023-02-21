@@ -70,7 +70,7 @@ const letsGoButton = classnames(
   display('flex'),
   justifyContent('justify-center'),
   alignItems('items-center'),
-  gap('gap-2'),
+  gap('gap-x-3'),
   fontSize('text-lg'),
   backgroundColor('bg-night'),
   borderRadius('rounded-full'),
