@@ -6,10 +6,10 @@ import getObssContract from 'helpers/getObssContract'
 export default async function (type: AllowListType) {
   const obssContract = getObssContract()
 
-  const vcAllowMapAddress =
+  const allowMapAddress =
     type === AllowListType.VC
       ? await obssContract.vcAllowMap()
       : await obssContract.founderAllowMap()
 
-  return KetlAllowMap__factory.connect(vcAllowMapAddress, defaultProvider)
+  return KetlAllowMap__factory.connect(allowMapAddress, defaultProvider)
 }
