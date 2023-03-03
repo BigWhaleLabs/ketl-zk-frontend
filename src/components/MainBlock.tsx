@@ -51,7 +51,7 @@ const textArea = (isValid: boolean) =>
     padding('pt-6'),
     backgroundColor('bg-transparent'),
     resize('resize-none'),
-    textColor(isValid ? 'text-white' : 'text-red-300'),
+    textColor(isValid ? 'text-white' : 'text-gray-300'),
     placeholderColor('placeholder-gray-400'),
     placeholderOpacity('placeholder-opacity-70'),
     textAlign('text-center'),
