@@ -25,11 +25,13 @@ import classnames, {
   space,
   textAlign,
   textColor,
+  transitionProperty,
   width,
 } from 'classnames/tailwind'
 import createProof from 'helpers/createProof'
 import handleError from 'helpers/handleError'
 import postWebViewMessage from 'helpers/postWebViewMessage'
+import tokenRegex from 'helpers/tokenRegex'
 
 const container = classnames(
   display('flex'),
@@ -43,17 +45,19 @@ const container = classnames(
 
 const baseFontSize = fontSize('text-2xl')
 
-const textArea = classnames(
-  baseFontSize,
-  padding('pt-6'),
-  backgroundColor('bg-transparent'),
-  resize('resize-none'),
-  textColor('text-white'),
-  placeholderColor('placeholder-gray-400'),
-  placeholderOpacity('!placeholder-opacity-70'),
-  textAlign('text-center'),
-  outlineColor('outline-transparent')
-)
+const textArea = (isValid: boolean) =>
+  classnames(
+    baseFontSize,
+    padding('pt-6'),
+    backgroundColor('bg-transparent'),
+    resize('resize-none'),
+    textColor(isValid ? 'text-white' : 'text-gray-300'),
+    placeholderColor('placeholder-gray-400'),
+    placeholderOpacity('placeholder-opacity-70'),
+    textAlign('text-center'),
+    outlineColor('outline-transparent'),
+    transitionProperty('transition-colors')
+  )
 
 const pasteButton = (active: boolean) =>
   classnames(
@@ -89,9 +93,12 @@ export default function () {
   const [token, setToken] = useState('')
   const [paste, setPaste] = useState(false)
   const [pastingAttempts, setPastingAttempts] = useState(0)
+  const [validToken, setValidToken] = useState(false)
 
   function onChangeText(text: string) {
-    setToken(text.replace(/[^0-9.]/gi, ''))
+    const parsed = text.replace(/[^0-9.]/gi, '')
+    setValidToken(tokenRegex(parsed))
+    setToken(parsed)
   }
 
   async function onCreateProof() {
@@ -122,7 +129,7 @@ export default function () {
         return
       const { data } = message as { data: string }
       if (data === 'success') setToken('')
-      else setToken(data)
+      else onChangeText(data)
     }
 
     if (navigator.userAgent.includes('Android')) {
@@ -140,13 +147,14 @@ export default function () {
     }
   }, [])
 
-  const disableNextStep = loading || !token.length
+  const disableNextStep = loading || !validToken
   const hasToken = useMemo(() => !!token.length, [token])
 
   return (
     <div className={container}>
       <KetlLogo />
       <div className={baseFontSize}>Enter your access token</div>
+      <div className={baseFontSize}>{validToken ? 'true' : 'false'}</div>
       <TextareaAutosize
         pattern="[0-9]*"
         placeholder="Your token goes here"
@@ -154,7 +162,7 @@ export default function () {
         maxRows={5}
         value={token}
         disabled={loading}
-        className={textArea}
+        className={textArea(validToken)}
         onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
           onChangeText(event.currentTarget.value)
         }}
@@ -167,18 +175,18 @@ export default function () {
           onTouchEnd={() => setPaste(false)}
           onClick={() => {
             if (hasToken) {
-              setToken('')
+              onChangeText('')
               setPastingAttempts(0)
               return
             }
-            setPastingAttempts(pastingAttempts + 1)
             postWebViewMessage({ type: Messages.GetClipboard })
+            setTimeout(() => setPastingAttempts(pastingAttempts + 1), 100)
           }}
         >
           {hasToken ? 'Clear token' : 'Paste from clipboard'}
         </button>
       )}
-      {pastingAttempts > 0 && !token && <p>You might need to paste twice</p>}
+      {!token && pastingAttempts > 0 && <p>You might need to paste twice</p>}
       <button
         className={letsGoButton}
         onClick={onCreateProof}
