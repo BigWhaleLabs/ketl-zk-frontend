@@ -154,7 +154,6 @@ export default function () {
     <div className={container}>
       <KetlLogo />
       <div className={baseFontSize}>Enter your access token</div>
-      <div className={baseFontSize}>{validToken ? 'true' : 'false'}</div>
       <TextareaAutosize
         pattern="[0-9]*"
         placeholder="Your token goes here"
