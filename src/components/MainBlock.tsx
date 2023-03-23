@@ -108,8 +108,8 @@ export default function () {
       setLoading(true)
       const data = await createProof(token)
       postWebViewMessage({
-        type: Messages.GetProof,
         data,
+        type: Messages.GetProof,
       })
       setPastingAttempts(0)
     } catch (e) {
@@ -155,23 +155,23 @@ export default function () {
       <KetlLogo />
       <div className={baseFontSize}>Enter your access token</div>
       <TextareaAutosize
+        className={textArea(validToken)}
+        disabled={loading}
+        maxRows={5}
+        minRows={2}
         pattern="[0-9]*"
         placeholder="Your token goes here"
-        minRows={2}
-        maxRows={5}
         value={token}
-        disabled={loading}
-        className={textArea(validToken)}
         onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
           onChangeText(event.currentTarget.value)
         }}
       />
       {!loading && (
         <button
-          disabled={loading}
           className={pasteButton(paste)}
-          onTouchStart={() => setPaste(true)}
+          disabled={loading}
           onTouchEnd={() => setPaste(false)}
+          onTouchStart={() => setPaste(true)}
           onClick={() => {
             if (hasToken) {
               onChangeText('')
@@ -188,8 +188,8 @@ export default function () {
       {!token && pastingAttempts > 0 && <p>You might need to paste twice</p>}
       <button
         className={letsGoButton}
-        onClick={onCreateProof}
         disabled={disableNextStep}
+        onClick={onCreateProof}
       >
         {loading ? 'Loading...' : `Let's go`} {loading && <Loader />}
       </button>

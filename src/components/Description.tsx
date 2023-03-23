@@ -35,14 +35,14 @@ export default function () {
 
   const onClickLink = (link: AvailableScreen) => {
     postWebViewMessage({
-      type: Messages.OpenLink,
       data: link,
+      type: Messages.OpenLink,
     })
   }
   const spanOptions = (screen: AvailableScreen) => ({
-    onTouchStart: () => setTouch(screen),
-    onTouchEnd: () => setTouch(null),
     onClick: () => onClickLink(screen),
+    onTouchEnd: () => setTouch(null),
+    onTouchStart: () => setTouch(screen),
   })
 
   return (

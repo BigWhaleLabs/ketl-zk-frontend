@@ -26,18 +26,18 @@ export default function () {
       <path
         d={calculatePathD}
         stroke="url(#paint0_linear_196_49296)"
-        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
+        strokeWidth="2"
       />
       <defs>
         <linearGradient
+          gradientUnits="userSpaceOnUse"
           id="paint0_linear_196_49296"
           x1="-0.8"
-          y1="9"
           x2="17"
+          y1="9"
           y2="9"
-          gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#A301D1" />
           <stop offset="1" stopColor="#EA2F98" />
