@@ -10,8 +10,8 @@ export async function getMerkleTreeInputs(
   const proof = await getMerkleTreeProof(hashFunc, commitment, commitments)
 
   return {
-    pathIndices: proof.pathIndices,
     pathElements: proof.siblings.map(([s]) => BigNumber.from(s).toHexString()),
+    pathIndices: proof.pathIndices,
   }
 }
 

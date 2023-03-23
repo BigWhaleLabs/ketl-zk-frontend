@@ -22,7 +22,7 @@ export default function () {
       <Root>
         <Router hook={useHashLocation}>
           <Switch>
-            <Route path="/allow-map" component={MainBlock} />
+            <Route component={MainBlock} path="/allow-map" />
             <Route path="">
               <Redirect to="/allow-map" />
             </Route>
