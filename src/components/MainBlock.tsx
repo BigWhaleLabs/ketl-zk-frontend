@@ -16,7 +16,6 @@ import classnames, {
   fontSize,
   gap,
   justifyContent,
-  opacity,
   outlineColor,
   padding,
   placeholderColor,
