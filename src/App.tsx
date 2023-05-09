@@ -1,4 +1,5 @@
-import { Redirect, Route, Router, Switch } from 'wouter'
+import { Route, Router, Switch } from 'wouter'
+import Founder from 'components/Founder'
 import MainBlock from 'components/MainBlock'
 import Root from 'components/Root'
 import classnames, {
@@ -19,13 +20,12 @@ const mainContainer = classnames(
 export default function () {
   return (
     <div className={mainContainer}>
+      <Founder />
       <Root>
         <Router hook={useHashLocation}>
           <Switch>
-            <Route component={MainBlock} path="/allow-map" />
-            <Route path="">
-              <Redirect to="/allow-map" />
-            </Route>
+            <Route path="/allow-map" component={MainBlock} />
+            <Route path="/yc" component={Founder} />
           </Switch>
         </Router>
       </Root>
