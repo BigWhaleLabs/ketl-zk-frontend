@@ -1,8 +1,8 @@
 import { VerificationType, requestSignature } from 'helpers/requestSignature'
-import getYCInput from 'helpers/getYCInput'
 import PublicKey from 'models/PublicKey'
 import axios from 'axios'
 import env from 'helpers/env'
+import getYCInput from 'helpers/getYCInput'
 import unpackSignature from 'helpers/unpackSignature'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
