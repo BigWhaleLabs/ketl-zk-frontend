@@ -13,7 +13,7 @@ const icon = classnames(
   height('h-4')
 )
 
-export default function () {
+export default function Loader() {
   const definedSize = 16
   const halfSize = definedSize / 2
   const sizeSubOne = definedSize - 1

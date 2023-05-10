@@ -29,6 +29,7 @@ import classnames, {
 } from 'classnames/tailwind'
 import createProof from 'helpers/createProof'
 import handleError from 'helpers/handleError'
+import isDataInMessage from 'helpers/isDataInMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import tokenRegex from 'helpers/tokenRegex'
 
@@ -90,7 +91,7 @@ const errorText = classnames(
   textAlign('text-center')
 )
 
-export default function () {
+export default function MainBlock() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [token, setToken] = useState('')
@@ -128,8 +129,7 @@ export default function () {
 
   useEffect(() => {
     const handleMessage = (message: unknown) => {
-      if (typeof message !== 'object' || !message || !('data' in message))
-        return
+      if (!isDataInMessage(message)) return
       const { data } = message as { data: string }
       if (data === 'success') setToken('')
       else onChangeText(data)

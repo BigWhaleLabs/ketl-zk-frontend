@@ -8,6 +8,6 @@ interface PostMessage {
   data?: unknown
 }
 
-export default (message: PostMessage) => {
+export default function postWebViewMessage(message: PostMessage) {
   return window?.ReactNativeWebView?.postMessage(JSON.stringify(message))
 }

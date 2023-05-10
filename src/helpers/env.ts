@@ -1,6 +1,7 @@
 import {
   ETH_MUMBAI_NETWORK,
   PROD_KETL_OBSS_CONTRACT_ADDRESS,
+  VERIFY_URL,
 } from '@big-whale-labs/constants'
 import { cleanEnv, str } from 'envalid'
 
@@ -10,4 +11,5 @@ export default cleanEnv(import.meta.env, {
   VITE_KETL_OBSS_CONTRACT_ADDRESS: str({
     default: PROD_KETL_OBSS_CONTRACT_ADDRESS,
   }),
+  VITE_VERIFY_URL: str({ default: VERIFY_URL }),
 })

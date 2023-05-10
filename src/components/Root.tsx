@@ -15,6 +15,6 @@ const root = classnames(
   margin('m-0')
 )
 
-export default function ({ children }: ChildrenProp) {
+export default function Root({ children }: ChildrenProp) {
   return <div className={root}>{children}</div>
 }

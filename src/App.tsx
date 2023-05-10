@@ -1,4 +1,5 @@
 import { Redirect, Route, Router, Switch } from 'wouter'
+import Founder from 'components/Founder'
 import MainBlock from 'components/MainBlock'
 import Root from 'components/Root'
 import classnames, {
@@ -16,14 +17,16 @@ const mainContainer = classnames(
   height('h-screen')
 )
 
-export default function () {
+export default function App() {
   return (
     <div className={mainContainer}>
+      <Founder />
       <Root>
         <Router hook={useHashLocation}>
           <Switch>
             <Route component={MainBlock} path="/allow-map" />
-            <Route path="">
+            <Route component={Founder} path="/yc" />
+            <Route>
               <Redirect to="/allow-map" />
             </Route>
           </Switch>

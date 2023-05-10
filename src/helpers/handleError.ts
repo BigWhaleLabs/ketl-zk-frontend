@@ -1,4 +1,4 @@
-export default function (error: unknown) {
+export default function handleError(error: unknown) {
   let output = ''
   if (error instanceof Error) output = error.message
   if (typeof error === 'string') output = error

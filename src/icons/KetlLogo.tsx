@@ -1,6 +1,6 @@
 import { fill } from 'classnames/tailwind'
 
-export default function () {
+export default function KetlLogo() {
   const fillColor = fill('fill-primary-light')
 
   return (

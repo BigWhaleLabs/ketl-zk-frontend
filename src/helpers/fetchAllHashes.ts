@@ -16,7 +16,7 @@ function parsePostLogData({
   return transferEventInterface.parseLog({ data, topics })
 }
 
-export default async function (type: AllowListType) {
+export default async function fetchAllHashes(type: AllowListType) {
   const allowMap = await getAllowList(type)
 
   const transactions = await allowMap.queryFilter(

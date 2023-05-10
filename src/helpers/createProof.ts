@@ -1,13 +1,13 @@
-import { getAllowMapInput } from 'helpers/getMerkleTreeProof'
 import AllowListType from 'models/AllowListType'
 import ProofResult from 'models/ProofResult'
 import checkIfProofUsedBefore from 'helpers/checkIfProofUsedBefore'
 import fetchAllHashes from 'helpers/fetchAllHashes'
+import getAllowMapInput from 'helpers/getAllowMapInput'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const snarkjs: any
 
-export default async function (
+export default async function createProof(
   token: string
 ): Promise<{ proof: ProofResult; type: AllowListType }> {
   for (const type of [
