@@ -1,6 +1,6 @@
-import axios from 'axios'
 import Signature from 'models/Signature'
-import env from './env'
+import axios from 'axios'
+import env from 'helpers/env'
 
 const baseURL = `${env.VITE_VERIFY_URL}/v0.2.1`
 

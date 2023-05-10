@@ -1,6 +1,8 @@
+import { VerificationType } from 'helpers/requestSignature'
 import { useEffect } from 'preact/hooks'
 import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
+import Messages from 'models/Messages'
 import classnames, {
   alignItems,
   display,
@@ -11,10 +13,8 @@ import classnames, {
   space,
 } from 'classnames/tailwind'
 import createFounderProof from 'helpers/createFounderProof'
-import postWebViewMessage from 'helpers/postWebViewMessage'
-import Messages from 'models/Messages'
-import { VerificationType } from 'helpers/requestSignature'
 import isDataInMessage from 'helpers/isDataInMessage'
+import postWebViewMessage from 'helpers/postWebViewMessage'
 
 const container = classnames(
   display('flex'),
@@ -29,14 +29,17 @@ const container = classnames(
 export default function () {
   useEffect(() => {
     const handleMessage = (message: unknown) => {
-      if (!isDataInMessage(message))
-        return
-      const { data } = message as { data: { type: VerificationType, params: object } }
+      if (!isDataInMessage(message)) return
+      const { data } = message as {
+        data: { type: VerificationType; params: object }
+      }
 
-      createFounderProof(data.type, data.params).then((proof) => postWebViewMessage({
-        data: proof,
-        type: Messages.GetTwitterProof,
-      }))
+      void createFounderProof(data.type, data.params).then((proof) =>
+        postWebViewMessage({
+          data: proof,
+          type: Messages.GetTwitterProof,
+        })
+      )
     }
 
     if (navigator.userAgent.includes('Android')) {

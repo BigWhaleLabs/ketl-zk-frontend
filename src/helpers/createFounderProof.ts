@@ -1,10 +1,9 @@
-import axios from 'axios'
-import Signature from 'models/Signature'
-import env from './env'
-import unpackSignature from './unpackSignature'
-import { getYCInput } from './getYCInput'
+import { VerificationType, requestSignature } from 'helpers/requestSignature'
 import PublicKey from 'models/PublicKey'
-import { VerificationType, requestSignature } from './requestSignature'
+import axios from 'axios'
+import env from 'helpers/env'
+import getYCInput from 'helpers/getYCInput'
+import unpackSignature from 'helpers/unpackSignature'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const snarkjs: any
@@ -31,7 +30,7 @@ export default async function (type: VerificationType, params: object) {
     params
   )
   const merkleTreeInputs = await getYCInput(message[1], hashes)
-  const { S, R8x, R8y } = await unpackSignature(signature)
+  const { R8x, R8y, S } = await unpackSignature(signature)
 
   const inputs = {
     attestationMessage: message,
