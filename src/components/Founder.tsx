@@ -50,17 +50,15 @@ const errorText = classnames(
 
 export default function () {
   useEffect(() => {
-    const handleMessage = async (message: unknown) => {
+    const handleMessage = (message: unknown) => {
       if (typeof message !== 'object' || !message || !('data' in message))
         return
       const { data } = message as { data: string }
-      try {
-        const proof = await createFounderProof(data)
-        postWebViewMessage({
-          data,
-          type: Messages.GetTwitterProof,
-        })
-      } catch {}
+
+      createFounderProof(data).then((proof) => postWebViewMessage({
+        data: proof,
+        type: Messages.GetTwitterProof,
+      }))
     }
 
     if (navigator.userAgent.includes('Android')) {
@@ -85,4 +83,3 @@ export default function () {
     </div>
   )
 }
-

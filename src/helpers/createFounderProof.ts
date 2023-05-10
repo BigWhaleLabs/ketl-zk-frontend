@@ -25,33 +25,29 @@ export async function getEddsaPublicKey() {
 }
 
 export default async function (token: string) {
-  try {
-    const response = await fetch('/trees/yc/1.json')
-    const hashes = await response.json()
-    const eddsaPublicKey = await getEddsaPublicKey()
-    const { message, signature } = await requestTwitterSignature(token)
-    const merkleTreeInputs = await getYCAllowMapInput(message[1], hashes)
-    const { S, R8x, R8y } = await unpackSignature(signature)
+  const response = await fetch('/trees/yc/1.json')
+  const hashes = await response.json()
+  const eddsaPublicKey = await getEddsaPublicKey()
+  const { message, signature } = await requestTwitterSignature(token)
+  const merkleTreeInputs = await getYCAllowMapInput(message[1], hashes)
+  const { S, R8x, R8y } = await unpackSignature(signature)
 
-    const inputs = {
-      attestationMessage: message,
-      attestationPubKeyX: eddsaPublicKey.x,
-      attestationPubKeyY: eddsaPublicKey.y,
-      attestationR8x: R8x,
-      attestationR8y: R8y,
-      attestationS: S,
-      nullifier: 69420,
-      ...merkleTreeInputs,
-    }
-
-    const proof = await snarkjs.groth16.fullProve(
-      inputs,
-      'zk/AttestationChecker.wasm',
-      'zk/AttestationChecker_final.zkey'
-    )
-
-    return proof
-  } catch (e) {
-    console.error(e)
+  const inputs = {
+    attestationMessage: message,
+    attestationPubKeyX: eddsaPublicKey.x,
+    attestationPubKeyY: eddsaPublicKey.y,
+    attestationR8x: R8x,
+    attestationR8y: R8y,
+    attestationS: S,
+    nullifier: 69420,
+    ...merkleTreeInputs,
   }
+
+  const proof = await snarkjs.groth16.fullProve(
+    inputs,
+    'zk/AttestationChecker.wasm',
+    'zk/AttestationChecker_final.zkey'
+  )
+
+  return proof
 }
