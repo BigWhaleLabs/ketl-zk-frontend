@@ -1,8 +1,8 @@
+import { getAllowMapInput } from 'helpers/getAllowMapInput'
 import AllowListType from 'models/AllowListType'
 import ProofResult from 'models/ProofResult'
 import checkIfProofUsedBefore from 'helpers/checkIfProofUsedBefore'
 import fetchAllHashes from 'helpers/fetchAllHashes'
-import { getAllowMapInput } from './getAllowMapInput'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const snarkjs: any
