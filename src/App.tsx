@@ -20,7 +20,6 @@ const mainContainer = classnames(
 export default function App() {
   return (
     <div className={mainContainer}>
-      <Founder />
       <Root>
         <Router hook={useHashLocation}>
           <Switch>
