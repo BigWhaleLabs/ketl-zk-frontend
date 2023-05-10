@@ -4,7 +4,7 @@ import buildBabyJub, { BabyJub } from 'circomlibjs/babyjub'
 
 let babyJub: BabyJub
 
-export default async function (packedSignature: string) {
+export default async function unpackSignature(packedSignature: string) {
   // Create BabyJub
   if (!babyJub) babyJub = await buildBabyJub()
 

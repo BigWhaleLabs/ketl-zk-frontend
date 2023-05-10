@@ -22,7 +22,10 @@ async function getHashes(type: VerificationType) {
   return response.json()
 }
 
-export default async function (type: VerificationType, params: object) {
+export default async function createFounderProof(
+  type: VerificationType,
+  params: object
+) {
   const hashes = await getHashes(type)
   const eddsaPublicKey = await getEddsaPublicKey()
   const { message, signature } = await requestSignature(

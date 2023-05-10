@@ -91,7 +91,7 @@ const errorText = classnames(
   textAlign('text-center')
 )
 
-export default function () {
+export default function MainBlock() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [token, setToken] = useState('')

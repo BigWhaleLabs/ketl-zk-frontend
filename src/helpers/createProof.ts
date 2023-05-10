@@ -7,7 +7,7 @@ import getAllowMapInput from 'helpers/getAllowMapInput'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const snarkjs: any
 
-export default async function (
+export default async function createProof(
   token: string
 ): Promise<{ proof: ProofResult; type: AllowListType }> {
   for (const type of [

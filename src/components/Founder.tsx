@@ -26,7 +26,7 @@ const container = classnames(
   gap('gap-2')
 )
 
-export default function () {
+export default function Founder() {
   useEffect(() => {
     const handleMessage = (message: unknown) => {
       if (!isDataInMessage(message)) return

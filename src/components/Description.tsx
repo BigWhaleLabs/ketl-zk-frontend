@@ -30,7 +30,7 @@ const descriptionLink = (active?: boolean) =>
     textDecoration(active ? 'underline' : 'no-underline')
   )
 
-export default function () {
+export default function Description() {
   const [touch, setTouch] = useState<AvailableScreen | null>()
 
   const onClickLink = (link: AvailableScreen) => {
