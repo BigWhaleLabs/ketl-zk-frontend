@@ -39,8 +39,8 @@ export default function () {
           y1="9"
           y2="9"
         >
-          <stop stopColor="#A301D1" />
-          <stop offset="1" stopColor="#EA2F98" />
+          <stop stopColor="#01F5FF" />
+          <stop offset="1" stopColor="#01FEB6" />
         </linearGradient>
       </defs>
     </svg>

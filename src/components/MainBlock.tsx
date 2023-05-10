@@ -16,7 +16,6 @@ import classnames, {
   fontSize,
   gap,
   justifyContent,
-  opacity,
   outlineColor,
   padding,
   placeholderColor,
@@ -45,6 +44,11 @@ const container = classnames(
 )
 
 const baseFontSize = fontSize('text-2xl')
+const enterYourToken = classnames(
+  baseFontSize,
+  textColor('text-primary-light'),
+  textAlign('text-center')
+)
 
 const textArea = (isValid: boolean) =>
   classnames(
@@ -80,8 +84,7 @@ const letsGoButton = classnames(
   backgroundColor('bg-night'),
   borderRadius('rounded-full'),
   padding('py-4', 'px-6'),
-  width('w-full'),
-  opacity('disabled:opacity-70')
+  width('w-full')
 )
 const errorText = classnames(
   textColor('text-red-500'),
@@ -154,7 +157,7 @@ export default function () {
   return (
     <div className={container}>
       <KetlLogo />
-      <div className={baseFontSize}>Enter your access token</div>
+      <div className={enterYourToken}>Enter your access token</div>
       <TextareaAutosize
         className={textArea(validToken)}
         disabled={loading}
@@ -187,13 +190,18 @@ export default function () {
         </button>
       )}
       {!token && pastingAttempts > 0 && <p>You might need to paste twice</p>}
-      <button
-        className={letsGoButton}
-        disabled={disableNextStep}
-        onClick={onCreateProof}
-      >
-        {loading ? 'Loading...' : `Let's go`} {loading && <Loader />}
-      </button>
+      {loading ? (
+        <Loader />
+      ) : (
+        <button
+          className={letsGoButton}
+          disabled={disableNextStep}
+          onClick={onCreateProof}
+        >
+          Let's go
+        </button>
+      )}
+
       {error && <p className={errorText}>{handleError(error)}</p>}
       <Description />
     </div>
