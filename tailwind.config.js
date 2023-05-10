@@ -7,6 +7,7 @@ module.exports = {
         '-10': '-10',
       },
       colors: {
+        'primary-light': '#BFF5FA',
         night: '#232323',
         link: '#15A1FC',
         'link-hover': '#0E7DB5',
