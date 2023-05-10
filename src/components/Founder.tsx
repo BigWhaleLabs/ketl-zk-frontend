@@ -20,6 +20,7 @@ import classnames, {
 import createFounderProof from 'helpers/createFounderProof'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import Messages from 'models/Messages'
+import { VerificationType } from 'helpers/requestSignature'
 
 const container = classnames(
   display('flex'),
@@ -53,9 +54,9 @@ export default function () {
     const handleMessage = (message: unknown) => {
       if (typeof message !== 'object' || !message || !('data' in message))
         return
-      const { data } = message as { data: string }
+      const { data } = message as { data: { type: VerificationType, params: object } }
 
-      createFounderProof(data).then((proof) => postWebViewMessage({
+      createFounderProof(data.type, data.params).then((proof) => postWebViewMessage({
         data: proof,
         type: Messages.GetTwitterProof,
       }))

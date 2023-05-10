@@ -4,18 +4,12 @@ import env from './env'
 import unpackSignature from './unpackSignature'
 import { getYCAllowMapInput } from './getYCMerkleTreeProof'
 import PublicKey from 'models/PublicKey'
+import { VerificationType, requestSignature } from './requestSignature'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const snarkjs: any
 
 const baseURL = `${env.VITE_VERIFY_URL}/v0.2.1`
-
-export async function requestTwitterSignature(token: string) {
-  const { data } = await axios.post<Signature>(`${baseURL}/verify-yc/twitter`, {
-    token,
-  })
-  return data
-}
 
 export async function getEddsaPublicKey() {
   const { data } = await axios.get<PublicKey>(
@@ -24,11 +18,18 @@ export async function getEddsaPublicKey() {
   return data
 }
 
-export default async function (token: string) {
-  const response = await fetch('/trees/yc/1.json')
-  const hashes = await response.json()
+async function getHashes(type: VerificationType) {
+  const response = await fetch(`/trees/yc/${type}.json`)
+  return response.json()
+}
+
+export default async function (type: VerificationType, params: object) {
+  const hashes = await getHashes(type)
   const eddsaPublicKey = await getEddsaPublicKey()
-  const { message, signature } = await requestTwitterSignature(token)
+  const { message, signature } = await requestSignature(
+    VerificationType.twitter,
+    params
+  )
   const merkleTreeInputs = await getYCAllowMapInput(message[1], hashes)
   const { S, R8x, R8y } = await unpackSignature(signature)
 
