@@ -1,7 +1,10 @@
 import { buildPoseidon } from 'circomlibjs'
-import { getMerkleTreeInputs } from './getMerkleTreeProof'
+import { getMerkleTreeInputs } from 'helpers/getMerkleTreeProof'
 
-export async function getAllowMapInput(token: string, hashes: string[]) {
+export default async function getAllowMapInput(
+  token: string,
+  hashes: string[]
+) {
   const poseidon = await buildPoseidon()
   function hashFunc(values: string[]) {
     const F = poseidon.F
