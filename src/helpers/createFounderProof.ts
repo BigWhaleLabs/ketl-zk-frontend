@@ -2,7 +2,7 @@ import axios from 'axios'
 import Signature from 'models/Signature'
 import env from './env'
 import unpackSignature from './unpackSignature'
-import { getYCAllowMapInput } from './getYCMerkleTreeProof'
+import { getYCInput } from './getYCInput'
 import PublicKey from 'models/PublicKey'
 import { VerificationType, requestSignature } from './requestSignature'
 
@@ -30,7 +30,7 @@ export default async function (type: VerificationType, params: object) {
     VerificationType.twitter,
     params
   )
-  const merkleTreeInputs = await getYCAllowMapInput(message[1], hashes)
+  const merkleTreeInputs = await getYCInput(message[1], hashes)
   const { S, R8x, R8y } = await unpackSignature(signature)
 
   const inputs = {

@@ -32,6 +32,7 @@ import createProof from 'helpers/createProof'
 import handleError from 'helpers/handleError'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import tokenRegex from 'helpers/tokenRegex'
+import isDataInMessage from 'helpers/isDataInMessage'
 
 const container = classnames(
   display('flex'),
@@ -125,7 +126,7 @@ export default function () {
 
   useEffect(() => {
     const handleMessage = (message: unknown) => {
-      if (typeof message !== 'object' || !message || !('data' in message))
+      if (!isDataInMessage(message))
         return
       const { data } = message as { data: string }
       if (data === 'success') setToken('')
