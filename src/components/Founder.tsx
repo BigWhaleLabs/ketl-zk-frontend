@@ -1,10 +1,9 @@
-import { VerificationType } from 'helpers/requestSignature'
-import { useEffect } from 'preact/hooks'
-import Description from 'components/Description'
+import { useEffect, useState } from 'preact/hooks'
 import KetlLogo from 'icons/KetlLogo'
 import Messages from 'models/Messages'
 import classnames, {
   alignItems,
+  backgroundColor,
   display,
   flexDirection,
   gap,
@@ -15,6 +14,7 @@ import classnames, {
 import createFounderProof from 'helpers/createFounderProof'
 import isDataInMessage from 'helpers/isDataInMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
+import VerificationMessage from 'models/VerificationMessage'
 
 const container = classnames(
   display('flex'),
@@ -23,23 +23,20 @@ const container = classnames(
   alignItems('items-center'),
   space('space-y-2'),
   padding('px-8'),
-  gap('gap-2')
+  gap('gap-2'),
+  backgroundColor('!bg-black')
 )
 
 export default function Founder() {
+  const [data, setData] = useState<VerificationMessage>()
   useEffect(() => {
     const handleMessage = (message: unknown) => {
       if (!isDataInMessage(message)) return
       const { data } = message as {
-        data: { type: VerificationType; params: object }
+        data: VerificationMessage
       }
 
-      void createFounderProof(data.type, data.params).then((proof) =>
-        postWebViewMessage({
-          data: proof,
-          type: Messages.GetTwitterProof,
-        })
-      )
+      setData(data)
     }
 
     if (navigator.userAgent.includes('Android')) {
@@ -57,10 +54,26 @@ export default function Founder() {
     }
   }, [])
 
-  return (
-    <div className={container}>
-      <KetlLogo />
-      <Description />
-    </div>
-  )
+  useEffect(() => {
+    if (data) {
+      void createFounderProof(data.type, data.params)
+        .then((proof) => {
+          postWebViewMessage({
+            data: proof,
+            type: Messages.GetFounderProof,
+          })
+        })
+        .catch((e) => {
+          postWebViewMessage({
+            data: {
+              message: `Can't generate valid proof with this token`,
+              e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+            },
+            type: Messages.GetFounderProofError,
+          })
+        })
+    }
+  }, [data])
+
+  return <div className={container}><KetlLogo /></div>
 }

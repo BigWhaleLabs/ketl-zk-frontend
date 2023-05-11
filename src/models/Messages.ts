@@ -1,7 +1,8 @@
 enum Messages {
   GetClipboard = 'GetClipboard',
   GetProof = 'GetProof',
-  GetTwitterProof = 'GetTwitterProof',
+  GetFounderProof = 'GetFounderProof',
+  GetFounderProofError = 'GetFounderProofError',
   OpenLink = 'OpenLink',
 }
 
