@@ -3,7 +3,6 @@ import KetlLogo from 'icons/KetlLogo'
 import Messages from 'models/Messages'
 import classnames, {
   alignItems,
-  backgroundColor,
   display,
   flexDirection,
   gap,
@@ -23,8 +22,7 @@ const container = classnames(
   alignItems('items-center'),
   space('space-y-2'),
   padding('px-8'),
-  gap('gap-2'),
-  backgroundColor('!bg-black')
+  gap('gap-2')
 )
 
 export default function Founder() {
@@ -55,25 +53,25 @@ export default function Founder() {
   }, [])
 
   useEffect(() => {
-    if (data) {
-      void createFounderProof(data)
-        .then((proof) => {
-          postWebViewMessage({
-            data: proof,
-            type: Messages.GetFounderProof,
-          })
-        })
-        .catch((e) => {
-          postWebViewMessage({
-            data: {
-              message: `Can't generate valid proof with this token`,
-              e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
-            },
-            type: Messages.GetFounderProofError,
-          })
-        })
-    }
+    if (!data) return
+    void createFounderProof(data)
+    .then((proof) => {
+      postWebViewMessage({
+        data: proof,
+        type: Messages.GetFounderProof,
+      })
+    })
+    .catch((e) => {
+      postWebViewMessage({
+        data: {
+          message: `Can't generate valid proof with this token`,
+          e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+        },
+        type: Messages.GetFounderProofError,
+      })
+    })
   }, [data])
 
   return <div className={container}><KetlLogo /></div>
 }
+
