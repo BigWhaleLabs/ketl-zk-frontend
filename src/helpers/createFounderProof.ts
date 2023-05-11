@@ -22,16 +22,22 @@ async function getHashes(type: VerificationType) {
   return response.json()
 }
 
-export default async function createFounderProof(
-  type: VerificationType,
-  params: object
-) {
+export default async function createFounderProof({
+  type,
+  params,
+}: {
+  type: VerificationType
+  params: object & { message?: string[]; signature?: string }
+}) {
   const hashes = await getHashes(type)
   const eddsaPublicKey = await getEddsaPublicKey()
-  const { message, signature } = await requestSignature(
-    VerificationType.twitter,
-    params
-  )
+  let message = params.message,
+    signature = params.signature
+  if (!message || !signature) {
+    const result = await requestSignature(type, params)
+    message = result.message
+    signature = result.signature
+  }
   const merkleTreeInputs = await getYCInput(message[1], hashes)
   const { R8x, R8y, S } = await unpackSignature(signature)
 

@@ -56,7 +56,7 @@ export default function Founder() {
 
   useEffect(() => {
     if (data) {
-      void createFounderProof(data.type, data.params)
+      void createFounderProof(data)
         .then((proof) => {
           postWebViewMessage({
             data: proof,
