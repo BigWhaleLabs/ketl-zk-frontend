@@ -25,16 +25,22 @@ const container = classnames(
   gap('gap-2')
 )
 
+function isVerificationMessage(data: object): data is VerificationMessage {
+  return 'type' in data
+}
+
 export default function Founder() {
   const [data, setData] = useState<VerificationMessage>()
   useEffect(() => {
     const handleMessage = (message: unknown) => {
       if (!isDataInMessage(message)) return
       const { data } = message as {
-        data: VerificationMessage
+        data: string
       }
 
-      setData(data)
+      const parsed = JSON.parse(data)
+
+      if (isVerificationMessage(parsed)) setData(parsed)
     }
 
     if (navigator.userAgent.includes('Android')) {
@@ -55,23 +61,26 @@ export default function Founder() {
   useEffect(() => {
     if (!data) return
     void createFounderProof(data)
-    .then((proof) => {
-      postWebViewMessage({
-        data: proof,
-        type: Messages.GetFounderProof,
+      .then((proof) => {
+        postWebViewMessage({
+          data: proof,
+          type: Messages.GetFounderProof,
+        })
       })
-    })
-    .catch((e) => {
-      postWebViewMessage({
-        data: {
-          message: `Can't generate valid proof with this token`,
-          e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
-        },
-        type: Messages.GetFounderProofError,
-      })
-    })
+      .catch((e) =>
+        postWebViewMessage({
+          data: {
+            message: `Can't generate valid proof with this token`,
+            e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+          },
+          type: Messages.GetFounderProofError,
+        })
+      )
   }, [data])
 
-  return <div className={container}><KetlLogo /></div>
+  return (
+    <div className={container}>
+      <KetlLogo />
+    </div>
+  )
 }
-
