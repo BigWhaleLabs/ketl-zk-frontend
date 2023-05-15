@@ -23,8 +23,8 @@ async function getHashes(type: VerificationType) {
 }
 
 export default async function createFounderProof({
-  type,
   params,
+  type,
 }: {
   type: VerificationType
   params: object & { message?: string[]; signature?: string }

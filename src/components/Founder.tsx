@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks'
 import KetlLogo from 'icons/KetlLogo'
 import Messages from 'models/Messages'
+import VerificationMessage from 'models/VerificationMessage'
 import classnames, {
   alignItems,
   display,
@@ -13,7 +14,6 @@ import classnames, {
 import createFounderProof from 'helpers/createFounderProof'
 import isDataInMessage from 'helpers/isDataInMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
-import VerificationMessage from 'models/VerificationMessage'
 
 const container = classnames(
   display('flex'),
@@ -70,8 +70,8 @@ export default function Founder() {
       .catch((e) =>
         postWebViewMessage({
           data: {
-            message: `Can't generate valid proof with this token`,
             e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+            message: `Can't generate valid proof with this token`,
           },
           type: Messages.GetFounderProofError,
         })
