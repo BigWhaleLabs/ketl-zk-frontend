@@ -17,9 +17,11 @@ export async function getEddsaPublicKey() {
   return data
 }
 
-async function getHashes(type: VerificationType) {
-  const response = await fetch(`/trees/yc/${type}.json`)
-  return response.json()
+async function getHashes() {
+  const twitter = await fetch(`/trees/yc/twitter.json`)
+  const emails = await fetch(`/trees/yc/email-unique.json`)
+
+  return [...(await twitter.json()), ...(await emails.json())]
 }
 
 export default async function createFounderProof({
@@ -29,7 +31,7 @@ export default async function createFounderProof({
   type: VerificationType
   params: object & { message?: string[]; signature?: string }
 }) {
-  const hashes = await getHashes(type)
+  const hashes = await getHashes()
   const eddsaPublicKey = await getEddsaPublicKey()
   let message = params.message,
     signature = params.signature
