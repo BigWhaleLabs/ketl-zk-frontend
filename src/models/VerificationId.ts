@@ -1,7 +1,8 @@
 enum VerificationId {
-  YC = 0,
-  Founder = 1,
-  VC = 2,
+  KetlTeam = 0,
+  YC = 1,
+  Founder = 2,
+  VC = 3,
 }
 
 export default VerificationId
