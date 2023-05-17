@@ -1,10 +1,5 @@
-import AllowListType from 'models/AllowListType'
-import getAllowList from 'helpers/getAllowList'
+import getKetlAttestationContract from './getKetlAttestationContract'
 
-export default async function checkIfProofUsedBefore(
-  type: AllowListType,
-  nullifier: string
-) {
-  const allowList = await getAllowList(type)
-  return allowList.nullifierMap(nullifier)
+export default async function checkIfProofUsedBefore(nullifier: string) {
+  return getKetlAttestationContract().nullifiers(nullifier)
 }
