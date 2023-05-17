@@ -1,5 +1,4 @@
 import { ChangeEvent } from 'preact/compat'
-import { VerificationId, VerificationType } from 'helpers/requestSignature'
 import { useCallback, useMemo, useState } from 'preact/hooks'
 import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
@@ -7,6 +6,8 @@ import Loader from 'icons/Loader'
 import Message, { MessageType } from 'models/Message'
 import Messages from 'models/Messages'
 import TextareaAutosize from 'react-textarea-autosize'
+import VerificationId from 'models/VerificationId'
+import VerificationType from 'models/VerificationType'
 import classnames, {
   alignItems,
   backgroundColor,
@@ -99,7 +100,7 @@ export default function MainBlock() {
   const [pastingAttempts, setPastingAttempts] = useState(0)
   const [validToken, setValidToken] = useState(false)
 
-  const { createProof, error, setError, loading, setLoading } = useProof()
+  const { createProof, error, loading, setError, setLoading } = useProof()
 
   const onMessage = useCallback(
     async (message: Message) => {
@@ -122,7 +123,7 @@ export default function MainBlock() {
           break
       }
     },
-    [createProof]
+    [createProof, setLoading, setError]
   )
 
   useMessageHandler(onMessage)

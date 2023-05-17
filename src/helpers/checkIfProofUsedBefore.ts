@@ -1,5 +1,5 @@
-import getKetlAttestationContract from './getKetlAttestationContract'
+import getKetlAttestationContract from 'helpers/getKetlAttestationContract'
 
-export default async function checkIfProofUsedBefore(nullifier: string) {
+export default function checkIfProofUsedBefore(nullifier: string) {
   return getKetlAttestationContract().nullifiers(nullifier)
 }

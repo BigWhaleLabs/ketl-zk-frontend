@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'preact/hooks'
 import Message from 'models/Message'
 import isDataInMessage from 'helpers/isDataInMessage'
-
-function isMessage(data: object): data is Message {
-  return 'type' in data
-}
+import isMessage from 'helpers/isMessage'
 
 export default function useMessageHandler(
   onMessage: (message: Message) => void

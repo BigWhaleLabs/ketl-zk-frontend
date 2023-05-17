@@ -1,4 +1,5 @@
-import { VerificationId, VerificationType } from 'helpers/requestSignature'
+import VerificationId from 'models/VerificationId'
+import VerificationType from 'models/VerificationType'
 
 interface CreateProofParams {
   message?: string[]

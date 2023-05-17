@@ -1,11 +1,11 @@
-import { requestSignature } from 'helpers/requestSignature'
 import CreateProofParams from 'models/CreateProofParams'
 import PublicKey from 'models/PublicKey'
 import axios from 'axios'
+import checkIfProofUsedBefore from 'helpers/checkIfProofUsedBefore'
 import env from 'helpers/env'
 import getInput from 'helpers/getInput'
+import requestSignature from 'helpers/requestSignature'
 import unpackSignature from 'helpers/unpackSignature'
-import checkIfProofUsedBefore from './checkIfProofUsedBefore'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const snarkjs: any
@@ -57,7 +57,7 @@ export default async function createFounderProof(params: CreateProofParams) {
   )
 
   if (await checkIfProofUsedBefore(proof.publicSignals[3])) {
-    return Promise.reject(new Error(`This token has already been used!`))
+    return Promise.reject(new Error('This token has already been used!'))
   }
 
   return proof

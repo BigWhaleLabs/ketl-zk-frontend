@@ -2,11 +2,8 @@ import { useCallback, useState } from 'preact/hooks'
 import CreateProofParams from 'models/CreateProofParams'
 import Messages from 'models/Messages'
 import generateProof from 'helpers/createProof'
+import isValidProofMessage from 'helpers/isValidProofMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
-
-function isValidProofMessage(params: object): params is CreateProofParams {
-  return 'type' in params
-}
 
 export default function useProof() {
   const [loading, setLoading] = useState(false)
@@ -47,7 +44,7 @@ export default function useProof() {
     createProof,
     error,
     loading,
-    setLoading,
     setError,
+    setLoading,
   }
 }

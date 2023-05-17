@@ -1,24 +1,13 @@
 import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
+import VerificationId from 'models/VerificationId'
+import VerificationType from 'models/VerificationType'
 import axios from 'axios'
 import env from 'helpers/env'
 
 const baseURL = `${env.VITE_VERIFY_URL}/v0.2.1`
 
-export enum VerificationType {
-  email = 'email-unique',
-  twitter = 'twitter',
-  balance = 'balance-unique',
-  token = 'token',
-}
-
-export enum VerificationId {
-  YC = 0,
-  Founder = 1,
-  VC = 2,
-}
-
-export async function requestSignature(
+export default async function requestSignature(
   id: VerificationId,
   type: VerificationType,
   params: CreateProofParams
