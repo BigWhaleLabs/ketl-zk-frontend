@@ -1,5 +1,4 @@
 import { Redirect, Route, Router, Switch } from 'wouter'
-import Founder from 'components/Founder'
 import MainBlock from 'components/MainBlock'
 import Root from 'components/Root'
 import classnames, {
@@ -24,7 +23,6 @@ export default function App() {
         <Router hook={useHashLocation}>
           <Switch>
             <Route component={MainBlock} path="/allow-map" />
-            <Route component={Founder} path="/yc" />
             <Route>
               <Redirect to="/allow-map" />
             </Route>
