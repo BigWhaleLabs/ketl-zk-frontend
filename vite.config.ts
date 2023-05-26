@@ -10,11 +10,13 @@ import removeConsole from 'vite-plugin-remove-console'
 
 export default defineConfig({
   plugins: [comlink(), preact(), tsconfigPaths()],
-  resolve: { alias: { assert: 'assert-browserify', crypto: 'crypto-browserify' } },
+  resolve: {
+    alias: { assert: 'assert-browserify', crypto: 'crypto-browserify' },
+  },
   build: {
     target: 'es2020',
     rollupOptions: {
-      plugins: [
+      plugins: ([
         visualizer({
           gzipSize: true,
           brotliSize: true,
@@ -28,7 +30,7 @@ export default defineConfig({
           _stream_duplex: 'duplex',
         }),
         removeConsole(),
-      ] as unknown[] as Plugin[],
+      ] as unknown[]) as Plugin[],
     },
     commonjsOptions: {
       transformMixedEsModules: true,
@@ -55,5 +57,5 @@ export default defineConfig({
   worker: {
     plugins: [comlink()],
   },
-  server: { port: 3000 },
+  server: { port: 3000, host: '0.0.0.0' },
 })

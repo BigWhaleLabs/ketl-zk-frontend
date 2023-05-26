@@ -1,9 +1,8 @@
 import CreateProofParams from 'models/CreateProofParams'
-import Signature from 'models/Signature'
 import VerificationId from 'models/VerificationId'
 import VerificationType from 'models/VerificationType'
-import axios from 'axios'
 import env from 'helpers/env'
+import isValidSignature from 'helpers/isValidSignature'
 
 const baseURL = `${env.VITE_VERIFY_URL}/v0.2.1`
 
@@ -12,21 +11,29 @@ export default async function requestSignature(
   type: VerificationType,
   params: CreateProofParams
 ) {
-  if (id !== VerificationId.YC) {
-    const { data } = await axios.post<Signature>(
-      `${baseURL}/verify-token/token`,
-      {
-        ...params,
-        type: id,
-      }
-    )
-    return data
-  }
+  const url =
+    id !== VerificationId.YC
+      ? `${baseURL}/verify-token/token`
+      : `${baseURL}/verify-/${type}`
 
-  const { data } = await axios.post<Signature>(
-    `${baseURL}/verify-/${type}`,
-    params
-  )
+  const requestParams =
+    id !== VerificationId.YC
+      ? {
+          ...params,
+          type: id,
+        }
+      : params
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(requestParams),
+  })
+  const data = await response.json()
+
+  if (!isValidSignature(data)) throw new Error('Invalid signature!')
 
   return data
 }

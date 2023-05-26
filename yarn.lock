@@ -1543,6 +1543,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@big-whale-labs/constants@npm:^0.1.85":
+  version: 0.1.85
+  resolution: "@big-whale-labs/constants@npm:0.1.85"
+  checksum: ff7f61f8c4779f1f1ccdc62f7639e32f5c3ac5c45209905c0598e0feca10fca55cdb620e531371eb7ba7721f4b9e211d8e6848190097949266b9db14f010c069
+  languageName: node
+  linkType: hard
+
 "@big-whale-labs/eslint-config-bwl@npm:^2.1.5":
   version: 2.1.6
   resolution: "@big-whale-labs/eslint-config-bwl@npm:2.1.6"
@@ -1571,14 +1578,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@big-whale-labs/ketl-attestation-token@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "@big-whale-labs/ketl-attestation-token@npm:0.0.6"
+"@big-whale-labs/ketl-attestation-token@npm:^0.0.10":
+  version: 0.0.10
+  resolution: "@big-whale-labs/ketl-attestation-token@npm:0.0.10"
   dependencies:
-    "@big-whale-labs/constants": ^0.1.84
+    "@big-whale-labs/constants": ^0.1.85
     "@big-whale-labs/versioned-contract": ^1.0.2
+    "@zk-kit/incremental-merkle-tree": ^1.1.0
+    "@zk-kit/incremental-merkle-tree.sol": ^1.7.0
     prompt: ^1.3.0
-  checksum: 7fc96932147f3998a56be060a3fca8622ccc967a565f2934075bdb72a4a31d89be08812e05a8863ad994348d59143e8f8ad68c4dea97748f2707daf63156fd0f
+  checksum: 59e8d86efa87ecd3354a789dd509b4863199ce188e1e17809f4db9b2459f0286916a355bf6b14af0db7c020af570784e2a0f263f7fc8ff55d1990502e24f3752
   languageName: node
   linkType: hard
 
@@ -4033,10 +4042,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@zk-kit/incremental-merkle-tree.sol@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "@zk-kit/incremental-merkle-tree.sol@npm:1.7.0"
+  dependencies:
+    poseidon-solidity: 0.0.4
+  checksum: ddc5fe5ff1292045171f6627109b9815b23219267ed3d5d1fca0b081f2a35013bff532e28536abdf2a41e37a73b218dfb4510ec5f2fb8a9373a1f1343ea82ee2
+  languageName: node
+  linkType: hard
+
 "@zk-kit/incremental-merkle-tree@npm:^1.0.0":
   version: 1.0.0
   resolution: "@zk-kit/incremental-merkle-tree@npm:1.0.0"
   checksum: 2b5d7b5cc08cf3aea536d6541a1177221fcacca5b93fb22e37cd05926d138fe69035b73cb42e09798505caf1b7a75ad225027d13d35c2f0d7b216147cafd184e
+  languageName: node
+  linkType: hard
+
+"@zk-kit/incremental-merkle-tree@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@zk-kit/incremental-merkle-tree@npm:1.1.0"
+  checksum: 5f2d6dd2a4898aa75f72d5b3811ab965c369f0a51561250313849fb9a6a1163064c4887da3bea298d25e80a4bc79b3c6997edf6492a6a8fc157512bc3fcb5e23
   languageName: node
   linkType: hard
 
@@ -4544,17 +4569,6 @@ __metadata:
   version: 4.6.3
   resolution: "axe-core@npm:4.6.3"
   checksum: d0c46be92b9707c48b88a53cd5f471b155a2bfc8bf6beffb514ecd14e30b4863e340b5fc4f496d82a3c562048088c1f3ff5b93b9b3b026cb9c3bfacfd535da10
-  languageName: node
-  linkType: hard
-
-"axios@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "axios@npm:1.4.0"
-  dependencies:
-    follow-redirects: ^1.15.0
-    form-data: ^4.0.0
-    proxy-from-env: ^1.1.0
-  checksum: 7fb6a4313bae7f45e89d62c70a800913c303df653f19eafec88e56cea2e3821066b8409bc68be1930ecca80e861c52aa787659df0ffec6ad4d451c7816b9386b
   languageName: node
   linkType: hard
 
@@ -7706,7 +7720,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.15.0":
+"follow-redirects@npm:^1.0.0":
   version: 1.15.2
   resolution: "follow-redirects@npm:1.15.2"
   peerDependenciesMeta:
@@ -7764,17 +7778,6 @@ __metadata:
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
   checksum: b019e8d35c8afc14a2bd8a7a92fa4f525a4726b6d5a9740e8d2623c30e308fbb58dc8469f90415a856698933c8479b01646a9dff33c87cc4e76d72aedbbf860d
-  languageName: node
-  linkType: hard
-
-"form-data@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "form-data@npm:4.0.0"
-  dependencies:
-    asynckit: ^0.4.0
-    combined-stream: ^1.0.8
-    mime-types: ^2.1.12
-  checksum: 01135bf8675f9d5c61ff18e2e2932f719ca4de964e3be90ef4c36aacfc7b9cb2fceb5eca0b7e0190e3383fe51c5b37f4cb80b62ca06a99aaabfcfd6ac7c9328c
   languageName: node
   linkType: hard
 
@@ -9868,7 +9871,7 @@ __metadata:
   dependencies:
     "@big-whale-labs/constants": ^0.1.84
     "@big-whale-labs/eslint-config-bwl": ^2.1.5
-    "@big-whale-labs/ketl-attestation-token": ^0.0.6
+    "@big-whale-labs/ketl-attestation-token": ^0.0.10
     "@big-whale-labs/obss-storage-contract": 0.1.3
     "@big-whale-labs/prettier-config": ^1.1.3
     "@esbuild-plugins/node-globals-polyfill": ^0.2.3
@@ -9880,7 +9883,6 @@ __metadata:
     "@zk-kit/incremental-merkle-tree": ^1.0.0
     assert-browserify: ^2.0.0
     autoprefixer: ^10.4.13
-    axios: ^1.4.0
     circomlibjs: ^0.1.7
     cross-env: ^7.0.3
     crypto-browserify: ^3.12.0
@@ -11183,6 +11185,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"poseidon-solidity@npm:0.0.4":
+  version: 0.0.4
+  resolution: "poseidon-solidity@npm:0.0.4"
+  checksum: c4c3c7099a8f77a5d2c6c22ad819ac920b39b7c43c0355e8fa7a6586671416e16903e997250eed08647a22876349cdf34bc4ecb82c664d8d40f52c11fd30bb53
+  languageName: node
+  linkType: hard
+
 "postcss-attribute-case-insensitive@npm:^5.0.2":
   version: 5.0.2
   resolution: "postcss-attribute-case-insensitive@npm:5.0.2"
@@ -12184,13 +12193,6 @@ __metadata:
   version: 2.5.0
   resolution: "proxy-compare@npm:2.5.0"
   checksum: 81ef2a3990a999b9c3d27f5e10b18603b9236e37d7772c5dadb5726c9ec2a30df46fe3067a216ee1d14f53783703767db9c19ff26ab2a9ffb2ea31f09c87b14f
-  languageName: node
-  linkType: hard
-
-"proxy-from-env@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "proxy-from-env@npm:1.1.0"
-  checksum: ed7fcc2ba0a33404958e34d95d18638249a68c430e30fcb6c478497d72739ba64ce9810a24f53a7d921d0c065e5b78e3822759800698167256b04659366ca4d4
   languageName: node
   linkType: hard
 

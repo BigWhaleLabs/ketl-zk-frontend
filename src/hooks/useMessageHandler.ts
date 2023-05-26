@@ -9,11 +9,15 @@ export default function useMessageHandler(
   const [message, setMessage] = useState<string>()
 
   useEffect(() => {
-    if (!message) return
+    try {
+      if (!message) return
 
-    const data = JSON.parse(message)
+      const data = JSON.parse(message)
 
-    if (isMessage(data)) onMessage(data)
+      if (isMessage(data)) onMessage(data)
+    } catch (e) {
+      console.error(e)
+    }
   }, [message, onMessage])
 
   useEffect(() => {
