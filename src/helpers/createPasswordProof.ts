@@ -1,6 +1,6 @@
 import CreateProofParams from 'models/CreateProofParams'
-import createPasswordInput from './createPasswordInput'
 import Signature from 'models/Signature'
+import createPasswordInput from 'helpers/createPasswordInput'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const snarkjs: any

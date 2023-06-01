@@ -132,8 +132,8 @@ export default function MainBlock() {
     if (!token) return
 
     await createProof({
-      token,
       id: VerificationId.Founder,
+      token,
       type: VerificationType.token,
     })
   }

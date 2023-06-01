@@ -14,8 +14,6 @@ export async function getMerkleTreeInputs(
     commitments
   )
 
-  console.log('proof', proof.root)
-
   return {
     pathElements: proof.siblings.map(([s]) => BigNumber.from(s).toHexString()),
     pathIndices: proof.pathIndices,

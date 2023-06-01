@@ -1,8 +1,8 @@
-import CreateProofParams from 'models/CreateProofParams'
-import getInput from 'helpers/getInput'
-import getEntanglementsHashes from 'helpers/getEntanglementsHashes'
 import { BigNumber } from 'ethers'
+import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
+import getEntanglementsHashes from 'helpers/getEntanglementsHashes'
+import getInput from 'helpers/getInput'
 
 export default async function createPasswordInput(
   params: CreateProofParams,
@@ -10,7 +10,7 @@ export default async function createPasswordInput(
   signature: Signature
 ) {
   const hashes = await getEntanglementsHashes(params.id)
-  let message = signature.message
+  const message = signature.message
 
   const hexEntanglement = BigNumber.from(entanglement).toHexString()
 

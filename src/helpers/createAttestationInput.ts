@@ -1,9 +1,9 @@
+import { getEddsaPublicKey } from 'helpers/getEddsaPublicKey'
 import CreateProofParams from 'models/CreateProofParams'
+import Signature from 'models/Signature'
+import getHashes from 'helpers/getHashes'
 import getInput from 'helpers/getInput'
 import unpackSignature from 'helpers/unpackSignature'
-import getHashes from 'helpers/getHashes'
-import { getEddsaPublicKey } from 'helpers/getEddsaPublicKey'
-import Signature from 'models/Signature'
 
 export default async function createAttestationInput(
   params: CreateProofParams,

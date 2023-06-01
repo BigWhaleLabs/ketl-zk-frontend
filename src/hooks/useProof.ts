@@ -1,12 +1,12 @@
 import { useCallback, useState } from 'preact/hooks'
 import CreateProofParams from 'models/CreateProofParams'
 import Messages from 'models/Messages'
+import Signature from 'models/Signature'
+import createAttestationProof from 'helpers/createAttestationProof'
+import createPasswordProof from 'helpers/createPasswordProof'
 import isValidProofMessage from 'helpers/isValidProofMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
-import createPasswordProof from 'helpers/createPasswordProof'
-import createAttestationProof from 'helpers/createAttestationProof'
 import requestSignature from 'helpers/requestSignature'
-import Signature from 'models/Signature'
 
 export default function useProof() {
   const [loading, setLoading] = useState(false)

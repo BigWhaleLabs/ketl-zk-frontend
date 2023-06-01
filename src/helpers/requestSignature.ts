@@ -25,11 +25,11 @@ export default async function requestSignature(
       : params
 
   const response = await fetch(url, {
-    method: 'POST',
+    body: JSON.stringify(requestParams),
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(requestParams),
+    method: 'POST',
   })
   const data = await response.json()
 

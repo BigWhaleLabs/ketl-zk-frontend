@@ -1,5 +1,5 @@
 import env from 'helpers/env'
-import isValidEdDSAKey from './isValidEdDSAKey'
+import isValidEdDSAKey from 'helpers/isValidEdDSAKey'
 
 const baseURL = `${env.VITE_VERIFY_URL}/v0.2.1`
 

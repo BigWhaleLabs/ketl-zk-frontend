@@ -1,4 +1,4 @@
-import VerificationId from './VerificationId'
+import VerificationId from 'models/VerificationId'
 
 const VerificationMap = {
   [VerificationId.KetlTeam]: VerificationId.KetlTeam,
