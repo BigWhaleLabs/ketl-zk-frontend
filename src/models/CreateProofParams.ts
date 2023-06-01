@@ -5,6 +5,11 @@ interface CreateProofParams {
   message?: string[]
   signature?: string
   token?: string
+  ownerAddress?: string
+  ownerMessage?: string
+  ownerSignature?: string
+  threshold?: number
+  tokenAddress?: string
   id: VerificationId
   type: VerificationType
 }

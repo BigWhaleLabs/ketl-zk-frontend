@@ -1,22 +1,16 @@
 import CreateProofParams from 'models/CreateProofParams'
 import getInput from 'helpers/getInput'
-import requestSignature from 'helpers/requestSignature'
 import unpackSignature from 'helpers/unpackSignature'
 import getHashes from 'helpers/getHashes'
 import { getEddsaPublicKey } from 'helpers/getEddsaPublicKey'
+import Signature from 'models/Signature'
 
 export default async function createAttestationInput(
-  params: CreateProofParams
+  params: CreateProofParams,
+  { message, signature }: Signature
 ) {
   const hashes = await getHashes(params.id)
   const eddsaPublicKey = await getEddsaPublicKey()
-  let message = params.message,
-    signature = params.signature
-  if (!message || !signature) {
-    const result = await requestSignature(params.id, params.type, params)
-    message = result.message
-    signature = result.signature
-  }
   const hash = message[1]
   const merkleTreeInputs = await getInput(hash, hashes)
   const { R8x, R8y, S } = await unpackSignature(signature)

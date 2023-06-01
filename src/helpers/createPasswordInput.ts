@@ -2,20 +2,17 @@ import CreateProofParams from 'models/CreateProofParams'
 import getInput from 'helpers/getInput'
 import getEntanglementsHashes from 'helpers/getEntanglementsHashes'
 import { BigNumber } from 'ethers'
+import Signature from 'models/Signature'
 
 export default async function createPasswordInput(
   params: CreateProofParams,
-  entanglement: string
+  entanglement: string,
+  signature: Signature
 ) {
   const hashes = await getEntanglementsHashes(params.id)
-  let message = params.message
+  let message = signature.message
 
   const hexEntanglement = BigNumber.from(entanglement).toHexString()
-
-  console.log(
-    'entanglement',
-    hashes.includes(hexEntanglement) ? hashes : [hexEntanglement, ...hashes]
-  )
 
   const merkleTreeInputs = await getInput(
     hexEntanglement,

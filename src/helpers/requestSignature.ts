@@ -14,7 +14,7 @@ export default async function requestSignature(
   const url =
     id !== VerificationId.YC
       ? `${baseURL}/verify-token/token`
-      : `${baseURL}/verify-/${type}`
+      : `${baseURL}/verify-yc/${type}`
 
   const requestParams =
     id !== VerificationId.YC

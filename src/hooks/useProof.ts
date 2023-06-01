@@ -5,41 +5,42 @@ import isValidProofMessage from 'helpers/isValidProofMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import createPasswordProof from 'helpers/createPasswordProof'
 import createAttestationProof from 'helpers/createAttestationProof'
+import requestSignature from 'helpers/requestSignature'
+import Signature from 'models/Signature'
 
 export default function useProof() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
-  const createProof = useCallback(async function (params: CreateProofParams) {
-    postWebViewMessage({
-      data: { message: 'create proof' },
-      type: Messages.Debug,
-    })
+  const createProof = useCallback(async function (
+    params: CreateProofParams,
+    signature?: Signature
+  ) {
     try {
       setError('')
       setLoading(true)
 
-      if (!isValidProofMessage(params)) return
+      if (!isValidProofMessage(params))
+        throw new Error('Invalid params! Try again!')
 
-      console.log('params', params)
+      const messageAndSignature =
+        signature || (await requestSignature(params.id, params.type, params))
 
-      const attestationProof = await createAttestationProof(params)
-
-      console.log('attestationProof', attestationProof)
+      const attestationProof = await createAttestationProof(
+        params,
+        messageAndSignature
+      )
 
       const passwordProof = await createPasswordProof(
         params,
-        attestationProof.publicSignals[2]
+        attestationProof.publicSignals[2],
+        messageAndSignature
       )
-
-      console.log('passwordProof', passwordProof)
 
       const data = {
         attestationProof,
         passwordProof,
       }
-
-      console.log('data', data)
 
       postWebViewMessage({
         data,
@@ -61,7 +62,8 @@ export default function useProof() {
         setError(e.message)
       }
     }
-  }, [])
+  },
+  [])
 
   return {
     createProof,

@@ -104,11 +104,6 @@ export default function MainBlock() {
 
   const onMessage = useCallback(
     async (message: Message) => {
-      postWebViewMessage({
-        data: { message: 'onMessage' },
-        type: Messages.Debug,
-      })
-
       switch (message.type) {
         case MessageType.CreateProof:
           await createProof(message.params)
@@ -137,14 +132,9 @@ export default function MainBlock() {
     if (!token) return
 
     await createProof({
-      id: VerificationId.YC,
-      message: [
-        '1',
-        '21212799027259011773181295718269938402354184648143134526469861161466740160498',
-      ],
-      signature:
-        '0x2dfb4c1320c3b2bea6da817ff345f55734fad843167178431c5aa447604a4c11d602e657571c34c7dc63fcc5b4cf568ffa2b1bec2f15f09e5ac110fa96f5e703',
-      type: VerificationType.email,
+      token,
+      id: VerificationId.Founder,
+      type: VerificationType.token,
     })
   }
 
@@ -198,7 +188,7 @@ export default function MainBlock() {
       ) : (
         <button
           className={letsGoButton}
-          // disabled={disableNextStep}
+          disabled={disableNextStep}
           onClick={onCreateProof}
         >
           Let's go
