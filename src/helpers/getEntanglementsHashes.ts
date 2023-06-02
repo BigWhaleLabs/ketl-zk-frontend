@@ -1,13 +1,27 @@
-import getKetlAttestationContract from 'helpers/getKetlAttestationContract'
+import getKetlAttestationContract, {
+  transferEventInterface,
+} from 'helpers/getKetlAttestationContract'
+import { BigNumber } from 'ethers'
+
+function parseEntanglementRegistered({
+  data,
+  topics,
+}: {
+  data: string
+  topics: string[]
+}) {
+  return transferEventInterface.parseLog({ data, topics })
+}
 
 export default async function getEntanglementsHashes(type: number) {
-  const count = await getKetlAttestationContract().entanglementsCounts(type)
+  const contract = getKetlAttestationContract()
 
-  const records = []
-  for (let i = 0; i < count.toNumber(); i += 1) {
-    const record = await getKetlAttestationContract().entanglements(type, i)
-    records.push(record.toHexString())
-  }
+  const entanglements = await contract.queryFilter(
+    contract.filters.EntanglementRegistered()
+  )
 
-  return records
+  return entanglements
+    .map(parseEntanglementRegistered)
+    .filter(({ args }) => Number(args[0]) === type)
+    .map(({ args }) => BigNumber.from(args[1]).toHexString())
 }
