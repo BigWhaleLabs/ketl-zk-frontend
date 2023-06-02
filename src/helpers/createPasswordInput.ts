@@ -21,7 +21,7 @@ export default async function createPasswordInput(
 
   const inputs = {
     attestationMessage: message,
-    password: 69420,
+    password: params.password,
     ...merkleTreeInputs,
   }
 
