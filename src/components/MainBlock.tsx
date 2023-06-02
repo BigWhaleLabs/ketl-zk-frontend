@@ -106,7 +106,7 @@ export default function MainBlock() {
     async (message: Message) => {
       switch (message.type) {
         case MessageType.CreateProof:
-          await createProof(message.params)
+          await createProof(message.params, message.signature)
           setPastingAttempts(0)
           if (message.params.token) {
             onChangeText(message.params.token)
@@ -130,12 +130,6 @@ export default function MainBlock() {
 
   async function onCreateProof() {
     if (!token) return
-
-    await createProof({
-      id: VerificationId.Founder,
-      token,
-      type: VerificationType.token,
-    })
   }
 
   function onChangeText(text: string) {

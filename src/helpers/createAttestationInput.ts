@@ -1,6 +1,6 @@
-import { getEddsaPublicKey } from 'helpers/getEddsaPublicKey'
 import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
+import getEddsaPublicKey from 'helpers/getEddsaPublicKey'
 import getHashes from 'helpers/getHashes'
 import getInput from 'helpers/getInput'
 import unpackSignature from 'helpers/unpackSignature'
@@ -22,7 +22,7 @@ export default async function createAttestationInput(
     attestationR8x: R8x,
     attestationR8y: R8y,
     attestationS: S,
-    password: 69420,
+    password: params.password,
     ...merkleTreeInputs,
   }
 
