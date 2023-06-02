@@ -11,18 +11,12 @@ export default async function requestSignature(
   type: VerificationType,
   params: CreateProofParams
 ) {
-  const url =
-    id !== VerificationId.YC
-      ? `${baseURL}/verify-token/token`
-      : `${baseURL}/verify-yc/${type}`
+  const url = `${baseURL}/verify-ketl/${type}`
 
-  const requestParams =
-    id !== VerificationId.YC
-      ? {
-          ...params,
-          type: id,
-        }
-      : params
+  const requestParams = {
+    ...params,
+    type: id,
+  }
 
   const response = await fetch(url, {
     body: JSON.stringify(requestParams),

@@ -10,6 +10,7 @@ interface CreateProofParams {
   ownerSignature?: string
   threshold?: number
   tokenAddress?: string
+  password: string
   id: VerificationId
   type: VerificationType
 }
