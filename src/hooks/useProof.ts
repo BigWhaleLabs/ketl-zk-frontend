@@ -7,6 +7,7 @@ import createPasswordProof from 'helpers/createPasswordProof'
 import isValidProofMessage from 'helpers/isValidProofMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import requestSignature from 'helpers/requestSignature'
+import findVerificationId from 'helpers/findVerificationId'
 
 export default function useProof() {
   const [loading, setLoading] = useState(false)
@@ -23,15 +24,19 @@ export default function useProof() {
       if (!isValidProofMessage(params))
         throw new Error('Invalid params! Try again!')
 
+      const id = params.id || (await findVerificationId(params))
+
       const messageAndSignature =
-        signature || (await requestSignature(params.id, params.type, params))
+        signature || (await requestSignature(id, params.type, params))
 
       const attestationProof = await createAttestationProof(
+        id,
         params,
         messageAndSignature
       )
 
       const passwordProof = await createPasswordProof(
+        id,
         params,
         attestationProof.publicSignals[2],
         messageAndSignature

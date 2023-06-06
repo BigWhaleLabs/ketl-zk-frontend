@@ -11,7 +11,7 @@ interface CreateProofParams {
   threshold?: number
   tokenAddress?: string
   password: string
-  id: VerificationId
+  id?: VerificationId
   type: VerificationType
 }
 
