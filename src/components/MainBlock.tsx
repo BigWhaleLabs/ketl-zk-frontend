@@ -1,8 +1,9 @@
 import { ChangeEvent } from 'preact/compat'
-import { useEffect, useMemo, useState } from 'preact/hooks'
+import { useCallback, useMemo, useState } from 'preact/hooks'
 import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
 import Loader from 'icons/Loader'
+import Message, { MessageType } from 'models/Message'
 import Messages from 'models/Messages'
 import TextareaAutosize from 'react-textarea-autosize'
 import classnames, {
@@ -27,11 +28,11 @@ import classnames, {
   transitionProperty,
   width,
 } from 'classnames/tailwind'
-import createProof from 'helpers/createProof'
 import handleError from 'helpers/handleError'
-import isDataInMessage from 'helpers/isDataInMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import tokenRegex from 'helpers/tokenRegex'
+import useMessageHandler from 'hooks/useMessageHandler'
+import useProof from 'hooks/useProof'
 
 const container = classnames(
   display('flex'),
@@ -92,63 +93,44 @@ const errorText = classnames(
 )
 
 export default function MainBlock() {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
   const [token, setToken] = useState('')
   const [paste, setPaste] = useState(false)
   const [pastingAttempts, setPastingAttempts] = useState(0)
   const [validToken, setValidToken] = useState(false)
+
+  const { createProof, error, loading, setError, setLoading } = useProof()
+
+  const onMessage = useCallback(
+    async (message: Message) => {
+      switch (message.type) {
+        case MessageType.CreateProof:
+          await createProof(message.params, message.signature)
+          setPastingAttempts(0)
+          if (message.params.token) {
+            onChangeText(message.params.token)
+          }
+          break
+        case MessageType.Reset:
+          setToken('')
+          setLoading(false)
+          break
+        case MessageType.Error:
+          setToken('')
+          setError(`Can't generate proof. Please try again!`)
+          setLoading(false)
+          break
+      }
+    },
+    [createProof, setLoading, setError]
+  )
+
+  useMessageHandler(onMessage)
 
   function onChangeText(text: string) {
     const parsed = text.replace(/[^0-9.]/gi, '')
     setValidToken(tokenRegex(parsed))
     setToken(parsed)
   }
-
-  async function onCreateProof() {
-    if (!token) return
-    try {
-      setError('')
-      setLoading(true)
-      const data = await createProof(token)
-      postWebViewMessage({
-        data,
-        type: Messages.GetProof,
-      })
-      setPastingAttempts(0)
-    } catch (e) {
-      console.error(e)
-      setLoading(false)
-      if (typeof e === 'string') {
-        setError(e)
-      } else if (e instanceof Error) {
-        setError(e.message)
-      }
-    }
-  }
-
-  useEffect(() => {
-    const handleMessage = (message: unknown) => {
-      if (!isDataInMessage(message)) return
-      const { data } = message as { data: string }
-      if (data === 'success') setToken('')
-      else onChangeText(data)
-    }
-
-    if (navigator.userAgent.includes('Android')) {
-      document.addEventListener('message', handleMessage)
-    } else {
-      window.addEventListener('message', handleMessage)
-    }
-    return () => {
-      window.onmessage = handleMessage
-      if (navigator.userAgent.includes('Android')) {
-        document.removeEventListener('message', handleMessage)
-      } else {
-        window.removeEventListener('message', handleMessage)
-      }
-    }
-  }, [])
 
   const disableNextStep = loading || !validToken
   const hasToken = useMemo(() => !!token.length, [token])
@@ -192,11 +174,7 @@ export default function MainBlock() {
       {loading ? (
         <Loader />
       ) : (
-        <button
-          className={letsGoButton}
-          disabled={disableNextStep}
-          onClick={onCreateProof}
-        >
+        <button className={letsGoButton} disabled={disableNextStep}>
           Let's go
         </button>
       )}

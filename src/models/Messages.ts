@@ -1,8 +1,9 @@
 enum Messages {
   GetClipboard = 'GetClipboard',
   GetProof = 'GetProof',
-  GetTwitterProof = 'GetTwitterProof',
+  GetProofError = 'GetProofError',
   OpenLink = 'OpenLink',
+  Debug = 'Debug',
 }
 
 export default Messages

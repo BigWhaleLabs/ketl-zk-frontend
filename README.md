@@ -12,7 +12,7 @@
 | --------------------------------- | ------------------------------------------------------------------------ |
 | `VITE_ETH_NETWORK`                | Eth network for your providers and contract (defaults to @bwl/constants) |
 | `VITE_ETH_RPC`                    | Ethereum node RPC URI (defaults to @bwl/constants)                       |
-| `VITE_KETL_OBSS_CONTRACT_ADDRESS` | OBSS contract address, that stores some app data                         |
+| `VITE_KETL_ATTESTATION_CONTRACT_ADDRESS` | Ketl Attestation contract address, that stores some app data                         |
 
 Also, please, consider looking at `.env.sample`.
 
