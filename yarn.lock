@@ -1543,10 +1543,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@big-whale-labs/constants@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "@big-whale-labs/constants@npm:0.2.2"
-  checksum: faa2eb16e558b3f67b6eb92949749c2af2e377e0c5bcebcf3c0114e9d16c61d72b2d70a2b708c9bef8cdaed66b8d6cbce86c7e17025b5694f6c4423337f592a7
+"@big-whale-labs/constants@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@big-whale-labs/constants@npm:0.2.3"
+  checksum: adddc1d42306ad578d304b902bc026fe2cff42ed92885ba4f0335965d3204809a35a8e3dd0538753aa042953e7d4de6c76f7552315ea1b15e0259f7d2ad493ca
   languageName: node
   linkType: hard
 
@@ -9870,7 +9870,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ketl-zk-frontend@workspace:."
   dependencies:
-    "@big-whale-labs/constants": ^0.2.2
+    "@big-whale-labs/constants": ^0.2.3
     "@big-whale-labs/eslint-config-bwl": ^2.1.5
     "@big-whale-labs/ketl-attestation-token": ^0.0.12
     "@big-whale-labs/obss-storage-contract": 0.1.3
