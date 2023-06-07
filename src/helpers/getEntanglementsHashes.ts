@@ -1,7 +1,7 @@
+import { BigNumber } from 'ethers'
 import getKetlAttestationContract, {
   transferEventInterface,
 } from 'helpers/getKetlAttestationContract'
-import { BigNumber } from 'ethers'
 
 function parseEntanglementRegistered({
   data,

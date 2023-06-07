@@ -6,8 +6,6 @@ import Loader from 'icons/Loader'
 import Message, { MessageType } from 'models/Message'
 import Messages from 'models/Messages'
 import TextareaAutosize from 'react-textarea-autosize'
-import VerificationId from 'models/VerificationId'
-import VerificationType from 'models/VerificationType'
 import classnames, {
   alignItems,
   backgroundColor,
@@ -128,10 +126,6 @@ export default function MainBlock() {
 
   useMessageHandler(onMessage)
 
-  async function onCreateProof() {
-    if (!token) return
-  }
-
   function onChangeText(text: string) {
     const parsed = text.replace(/[^0-9.]/gi, '')
     setValidToken(tokenRegex(parsed))
@@ -180,11 +174,7 @@ export default function MainBlock() {
       {loading ? (
         <Loader />
       ) : (
-        <button
-          className={letsGoButton}
-          disabled={disableNextStep}
-          onClick={onCreateProof}
-        >
+        <button className={letsGoButton} disabled={disableNextStep}>
           Let's go
         </button>
       )}

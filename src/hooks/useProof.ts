@@ -4,10 +4,10 @@ import Messages from 'models/Messages'
 import Signature from 'models/Signature'
 import createAttestationProof from 'helpers/createAttestationProof'
 import createPasswordProof from 'helpers/createPasswordProof'
+import findVerificationId from 'helpers/findVerificationId'
 import isValidProofMessage from 'helpers/isValidProofMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import requestSignature from 'helpers/requestSignature'
-import findVerificationId from 'helpers/findVerificationId'
 
 export default function useProof() {
   const [loading, setLoading] = useState(false)

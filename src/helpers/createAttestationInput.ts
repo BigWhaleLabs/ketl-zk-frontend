@@ -1,10 +1,10 @@
 import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
+import VerificationId from 'models/VerificationId'
 import getEddsaPublicKey from 'helpers/getEddsaPublicKey'
 import getHashes from 'helpers/getHashes'
 import getInput from 'helpers/getInput'
 import unpackSignature from 'helpers/unpackSignature'
-import VerificationId from 'models/VerificationId'
 
 export default async function createAttestationInput(
   id: VerificationId,

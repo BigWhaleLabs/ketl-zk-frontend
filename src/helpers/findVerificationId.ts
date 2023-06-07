@@ -1,10 +1,10 @@
-import getHashes from 'helpers/getHashes'
-import VerificationId from 'models/VerificationId'
 import CreateProofParams from 'models/CreateProofParams'
-import requestSignature from './requestSignature'
+import VerificationId from 'models/VerificationId'
+import getHashes from 'helpers/getHashes'
+import requestSignature from 'src/helpers/requestSignature'
 
 export default async function findVerificationId(params: CreateProofParams) {
-  for (let id of [
+  for (const id of [
     VerificationId.KetlTeam,
     VerificationId.VC,
     VerificationId.Founder,
