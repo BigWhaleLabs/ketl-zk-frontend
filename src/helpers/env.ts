@@ -1,7 +1,7 @@
 import {
   ETH_MUMBAI_NETWORK,
-  VERIFY_URL,
   KETL_ATTESTATION_CONTRACT,
+  VERIFY_URL,
 } from '@big-whale-labs/constants'
 import { cleanEnv, str } from 'envalid'
 
