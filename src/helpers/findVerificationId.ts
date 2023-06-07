@@ -1,7 +1,7 @@
 import CreateProofParams from 'models/CreateProofParams'
 import VerificationId from 'models/VerificationId'
 import getHashes from 'helpers/getHashes'
-import requestSignature from 'src/helpers/requestSignature'
+import requestSignature from 'helpers/requestSignature'
 
 export default async function findVerificationId(params: CreateProofParams) {
   for (const id of [
