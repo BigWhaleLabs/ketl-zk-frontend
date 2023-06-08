@@ -39,6 +39,7 @@ export default function useProof() {
         id,
         params,
         attestationProof.publicSignals[2],
+        attestationProof.publicSignals[3],
         messageAndSignature
       )
 

@@ -10,9 +10,16 @@ export default async function createPasswordProof(
   id: VerificationId,
   params: CreateProofParams,
   entanglement: string,
+  attestationHash: string,
   signature: Signature
 ) {
-  const input = await createPasswordInput(id, params, entanglement, signature)
+  const input = await createPasswordInput(
+    id,
+    params,
+    entanglement,
+    attestationHash,
+    signature
+  )
 
   const proof = await snarkjs.groth16.fullProve(
     input,
