@@ -2,6 +2,7 @@ import { BigNumber } from 'ethers'
 import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
 import VerificationId from 'models/VerificationId'
+import checkAttestationHash from 'helpers/checkAttestationHash'
 import getEntanglementsHashes from 'helpers/getEntanglementsHashes'
 import getInput from 'helpers/getInput'
 
@@ -9,16 +10,28 @@ export default async function createPasswordInput(
   id: VerificationId,
   params: CreateProofParams,
   entanglement: string,
+  attestationHash: string,
   signature: Signature
 ) {
   const hashes = await getEntanglementsHashes(id)
   const message = signature.message
 
-  const hexEntanglement = BigNumber.from(entanglement).toHexString()
+  const isUsedAttestationHash = await checkAttestationHash(attestationHash)
+
+  const hexEntanglement = BigNumber.from(entanglement)
+    .toHexString()
+    .toLowerCase()
+
+  const hashesLowerCased = hashes.map((hash) => hash.toLowerCase())
+
+  if (isUsedAttestationHash && !hashes.includes(hexEntanglement))
+    throw new Error('Error! Incorrect attestationHash and entanglement!')
 
   const merkleTreeInputs = await getInput(
     hexEntanglement,
-    hashes.includes(hexEntanglement) ? hashes : [hexEntanglement, ...hashes]
+    hashesLowerCased.includes(hexEntanglement)
+      ? hashes
+      : [...hashes, hexEntanglement]
   )
 
   const inputs = {
