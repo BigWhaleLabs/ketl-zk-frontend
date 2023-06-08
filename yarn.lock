@@ -1578,9 +1578,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@big-whale-labs/ketl-attestation-token@npm:^0.0.12":
-  version: 0.0.12
-  resolution: "@big-whale-labs/ketl-attestation-token@npm:0.0.12"
+"@big-whale-labs/ketl-attestation-token@npm:^0.0.15":
+  version: 0.0.15
+  resolution: "@big-whale-labs/ketl-attestation-token@npm:0.0.15"
   dependencies:
     "@big-whale-labs/constants": ^0.2.0
     "@big-whale-labs/ketl-allow-map-contract": ^0.0.3
@@ -1588,7 +1588,7 @@ __metadata:
     "@zk-kit/incremental-merkle-tree": ^1.1.0
     "@zk-kit/incremental-merkle-tree.sol": ^1.7.0
     prompt: ^1.3.0
-  checksum: e61ff1b9db71b935eaeb76f5383067c09e38aa3921869134791ac25f109c6a4b320e7f3aba98c7b73600a8a396cb85e9a1404d4bf6fa2cf4c6e3f086275d1fe0
+  checksum: 2ce4504e6c6b1b73b3facbe72f9dc723aeadbe6ce5dc476ae254bb91d92a61edbfafeea086c9815f4df426aa911056628e332ade21737956dbbee6fed8e66378
   languageName: node
   linkType: hard
 
@@ -9872,7 +9872,7 @@ __metadata:
   dependencies:
     "@big-whale-labs/constants": ^0.2.4
     "@big-whale-labs/eslint-config-bwl": ^2.1.5
-    "@big-whale-labs/ketl-attestation-token": ^0.0.12
+    "@big-whale-labs/ketl-attestation-token": ^0.0.15
     "@big-whale-labs/obss-storage-contract": 0.1.3
     "@big-whale-labs/prettier-config": ^1.1.3
     "@esbuild-plugins/node-globals-polyfill": ^0.2.3
