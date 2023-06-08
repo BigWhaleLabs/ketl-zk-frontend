@@ -2,9 +2,9 @@ import { BigNumber } from 'ethers'
 import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
 import VerificationId from 'models/VerificationId'
+import checkAttestationHash from 'helpers/checkAttestationHash'
 import getEntanglementsHashes from 'helpers/getEntanglementsHashes'
 import getInput from 'helpers/getInput'
-import checkAttestationHash from './checkAttestationHash'
 
 export default async function createPasswordInput(
   id: VerificationId,
