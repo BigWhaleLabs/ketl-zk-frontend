@@ -114,6 +114,12 @@ export default function MainBlock() {
           setToken('')
           setLoading(false)
           break
+        case MessageType.Status:
+          postWebViewMessage({
+            data: {},
+            type: Messages.Ready,
+          })
+          break
         case MessageType.Error:
           setToken('')
           setError(`Can't generate proof. Please try again!`)

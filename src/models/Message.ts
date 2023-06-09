@@ -5,6 +5,7 @@ export enum MessageType {
   CreateProof = 'CreateProof',
   Reset = 'Reset',
   Error = 'Error',
+  Status = 'Status',
 }
 
 type Message = {
