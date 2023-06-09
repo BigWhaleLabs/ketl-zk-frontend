@@ -4,6 +4,7 @@ enum Messages {
   GetProofError = 'GetProofError',
   OpenLink = 'OpenLink',
   Debug = 'Debug',
+  Ready = 'Ready',
 }
 
 export default Messages

@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'preact/compat'
-import { useCallback, useMemo, useState } from 'preact/hooks'
+import { useCallback, useEffect, useMemo, useState } from 'preact/hooks'
 import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
 import Loader from 'icons/Loader'
@@ -114,6 +114,12 @@ export default function MainBlock() {
           setToken('')
           setLoading(false)
           break
+        case MessageType.Status:
+          postWebViewMessage({
+            data: {},
+            type: Messages.Ready,
+          })
+          break
         case MessageType.Error:
           setToken('')
           setError(`Can't generate proof. Please try again!`)
@@ -131,6 +137,13 @@ export default function MainBlock() {
     setValidToken(tokenRegex(parsed))
     setToken(parsed)
   }
+
+  useEffect(() => {
+    postWebViewMessage({
+      data: {},
+      type: Messages.Ready,
+    })
+  }, [])
 
   const disableNextStep = loading || !validToken
   const hasToken = useMemo(() => !!token.length, [token])
