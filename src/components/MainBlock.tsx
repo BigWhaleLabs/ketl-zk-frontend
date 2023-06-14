@@ -12,11 +12,10 @@ import classnames, {
   padding,
   space,
 } from 'classnames/tailwind'
-import isValidAttestationProofMessage from 'helpers/isValidAttestationProofMessage'
-import isValidPasswordProofMessage from 'helpers/isValidPasswordProofMessage'
+import onCreateAttestationProofMessage from 'helpers/onCreateAttestationProofMessage'
+import onCreatePasswordProofMessage from 'helpers/onCreatePasswordProofMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import useMessageHandler from 'hooks/useMessageHandler'
-import useProof from 'hooks/useProof'
 
 const container = classnames(
   display('flex'),
@@ -29,45 +28,22 @@ const container = classnames(
 )
 
 export default function MainBlock() {
-  const { createAttestation, createPassword } = useProof()
-
-  const onMessage = useCallback(
-    async (message: Message) => {
-      try {
-        switch (message.type) {
-          case MessageType.CreateAttestationProof:
-            if (
-              !isValidAttestationProofMessage(message.params) ||
-              !message.signature
-            )
-              throw new Error('Invalid data for attestation proof!')
-            await createAttestation(message.params, message.signature)
-            break
-          case MessageType.CreatePasswordProof:
-            if (!isValidPasswordProofMessage(message.params))
-              throw new Error('Invalid data for password proof!')
-            await createPassword(message.params)
-            break
-          case MessageType.Status:
-            postWebViewMessage({
-              data: {},
-              type: Messages.Ready,
-            })
-            break
-        }
-      } catch (e) {
+  const onMessage = useCallback(async (message: Message) => {
+    switch (message.type) {
+      case MessageType.CreateAttestationProof:
+        await onCreateAttestationProofMessage(message)
+        break
+      case MessageType.CreatePasswordProof:
+        await onCreatePasswordProofMessage(message)
+        break
+      case MessageType.Status:
         postWebViewMessage({
-          data: {
-            e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
-            message: `Can't generate valid proof with this token`,
-          },
-          type: Messages.GetProofError,
+          data: {},
+          type: Messages.Ready,
         })
-        console.error(e)
-      }
-    },
-    [createAttestation, createPassword]
-  )
+        break
+    }
+  }, [])
 
   useMessageHandler(onMessage)
 
