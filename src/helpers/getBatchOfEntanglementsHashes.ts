@@ -35,15 +35,11 @@ export default async function getBatchOfEntanglementsHashes(
 
   if (isUsedAttestation && hashIndex === -1)
     throw new Error(
-      `This verification method has already been used for another account! ${attestation} ${hash} ${filteredEntanglements.join(
-        ', '
-      )}`
+      `This verification method has already been used for another account!`
     )
 
   if (hashIndex === -1) {
-    throw new Error(
-      `This hash isn't among those added to the blockchain  ${attestation} ${hash}`
-    )
+    throw new Error(`This hash isn't among those added to the blockchain`)
   }
 
   const batchHashIndex = hashIndex - (hashIndex % batchSize) + batchSize
