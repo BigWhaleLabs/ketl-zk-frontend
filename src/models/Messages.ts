@@ -1,6 +1,7 @@
 enum Messages {
   GetClipboard = 'GetClipboard',
-  GetProof = 'GetProof',
+  GetAttestationProof = 'GetAttestationProof',
+  GetPasswordProof = 'GetPasswordProof',
   GetProofError = 'GetProofError',
   OpenLink = 'OpenLink',
   Debug = 'Debug',

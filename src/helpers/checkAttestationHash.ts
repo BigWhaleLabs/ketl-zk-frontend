@@ -1,5 +1,5 @@
-import getKetlAttestationContract from 'helpers/getKetlAttestationContract'
+import ketlAttestationContract from 'helpers/ketlAttestationContract'
 
 export default function checkAttestationHash(hash: string) {
-  return getKetlAttestationContract().attestationHashesEntangled(hash)
+  return ketlAttestationContract.attestationHashesEntangled(hash)
 }

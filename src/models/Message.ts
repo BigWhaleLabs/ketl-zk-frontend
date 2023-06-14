@@ -1,8 +1,10 @@
+import CreatePasswordProofParams from 'models/CreatePasswordProofParams'
 import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
 
 export enum MessageType {
-  CreateProof = 'CreateProof',
+  CreateAttestationProof = 'CreateAttestationProof',
+  CreatePasswordProof = 'CreatePasswordProof',
   Reset = 'Reset',
   Error = 'Error',
   Status = 'Status',
@@ -10,7 +12,7 @@ export enum MessageType {
 
 type Message = {
   type: MessageType
-  params: CreateProofParams
+  params: CreateProofParams | CreatePasswordProofParams
   signature?: Signature
 }
 

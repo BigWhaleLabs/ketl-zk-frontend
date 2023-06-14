@@ -1,25 +1,13 @@
-import CreateProofParams from 'models/CreateProofParams'
-import Signature from 'models/Signature'
-import VerificationId from 'models/VerificationId'
+import CreatePasswordProofParams from 'models/CreatePasswordProofParams'
 import createPasswordInput from 'helpers/createPasswordInput'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const snarkjs: any
 
 export default async function createPasswordProof(
-  id: VerificationId,
-  params: CreateProofParams,
-  entanglement: string,
-  attestationHash: string,
-  signature: Signature
+  params: CreatePasswordProofParams
 ) {
-  const input = await createPasswordInput(
-    id,
-    params,
-    entanglement,
-    attestationHash,
-    signature
-  )
+  const input = await createPasswordInput(params)
 
   const proof = await snarkjs.groth16.fullProve(
     input,
