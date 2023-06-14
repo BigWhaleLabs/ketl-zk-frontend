@@ -1,17 +1,15 @@
 import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
-import VerificationId from 'models/VerificationId'
 import getEddsaPublicKey from 'helpers/getEddsaPublicKey'
 import getHashes from 'helpers/getHashes'
 import getInput from 'helpers/getInput'
 import unpackSignature from 'helpers/unpackSignature'
 
 export default async function createAttestationInput(
-  id: VerificationId,
   params: CreateProofParams,
   { message, signature }: Signature
 ) {
-  const hashes = await getHashes(id)
+  const hashes = await getHashes(params.id)
   const eddsaPublicKey = await getEddsaPublicKey()
   const hash = message[1]
   const merkleTreeInputs = await getInput(hash, hashes)
