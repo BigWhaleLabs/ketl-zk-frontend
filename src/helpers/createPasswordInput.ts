@@ -1,6 +1,6 @@
 import { BigNumber } from 'ethers'
 import CreatePasswordProofParams from 'models/CreatePasswordProofParams'
-import getEntanglementsHashes from 'helpers/getEntanglementsHashes'
+import getBatchOfEntanglementsHashes from 'helpers/getBatchOfEntanglementsHashes'
 import getInput from 'helpers/getInput'
 
 export default async function createPasswordInput(
@@ -15,7 +15,7 @@ export default async function createPasswordInput(
   } = params
 
   const hash = BigNumber.from(entanglement).toHexString().toLowerCase()
-  const hashes = await getEntanglementsHashes(id, hash, attestationHash)
+  const hashes = await getBatchOfEntanglementsHashes(id, hash, attestationHash)
   const merkleTreeInputs = await getInput(hash, hashes)
 
   const inputs = {

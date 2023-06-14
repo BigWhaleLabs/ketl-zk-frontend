@@ -13,7 +13,7 @@ function parseEntanglementRegistered({
   return transferEventInterface.parseLog({ data, topics })
 }
 
-export default async function getEntanglementsHashes(
+export default async function getBatchOfEntanglementsHashes(
   type: number,
   hash: string,
   attestation: string
