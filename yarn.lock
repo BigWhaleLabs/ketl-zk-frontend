@@ -1536,10 +1536,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@big-whale-labs/constants@npm:^0.2.7":
-  version: 0.2.7
-  resolution: "@big-whale-labs/constants@npm:0.2.7"
-  checksum: d7c7e7bab64d91fe4cb8ac349088d94ac9ff8a3bfcff65b12cd17cc935afcec3bbd9527f65eeb984e48fedc468ce19820865ba3df84a7a1118d6864fc06c67da
+"@big-whale-labs/constants@npm:^0.2.8":
+  version: 0.2.8
+  resolution: "@big-whale-labs/constants@npm:0.2.8"
+  checksum: 299cbc2ab1a5b6c7ac51b6427bb042b6cf68dd5078a75085318df3c0613067531a7cf3b11c01f269e720740592777116fc8466b2c7d5807ef69ba75b72fd5583
   languageName: node
   linkType: hard
 
@@ -9843,7 +9843,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ketl-zk-frontend@workspace:."
   dependencies:
-    "@big-whale-labs/constants": ^0.2.7
+    "@big-whale-labs/constants": ^0.2.8
     "@big-whale-labs/eslint-config-bwl": ^2.1.5
     "@big-whale-labs/ketl-attestation-token": ^0.0.15
     "@big-whale-labs/prettier-config": ^1.1.3
