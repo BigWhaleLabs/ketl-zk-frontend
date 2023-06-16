@@ -8,5 +8,7 @@ export default async function getInput(id: string, ids: string[]) {
     return F.toString(poseidon(values))
   }
 
+  if (!ids.includes(id)) throw new Error('Invitation not found!')
+
   return getMerkleTreeInputs(20, hashFunc, id, ids)
 }

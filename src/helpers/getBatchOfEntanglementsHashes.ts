@@ -42,11 +42,8 @@ export default async function getBatchOfEntanglementsHashes(
     throw new Error(`This hash isn't among those added to the blockchain`)
   }
 
-  const batchHashIndex = hashIndex - (hashIndex % batchSize) + batchSize
+  if (batchSize > filteredEntanglements.length)
+    throw new Error(`Batch hasn't been completed`)
 
-  if (batchHashIndex > filteredEntanglements.length) {
-    throw new Error(`Batch hasn't been completed for this account yet`)
-  }
-
-  return filteredEntanglements.slice(0, batchHashIndex)
+  return filteredEntanglements
 }
