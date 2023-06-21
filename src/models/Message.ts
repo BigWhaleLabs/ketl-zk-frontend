@@ -1,6 +1,8 @@
 import CreatePasswordProofParams from 'models/CreatePasswordProofParams'
 import CreateProofParams from 'models/CreateProofParams'
+import FindIdParams from 'models/FindIdParams'
 import Signature from 'models/Signature'
+import ValidateProofParams from 'models/ValidateProofParams'
 
 export enum MessageType {
   CreateAttestationProof = 'CreateAttestationProof',
@@ -12,7 +14,11 @@ export enum MessageType {
 
 type Message = {
   type: MessageType
-  params: CreateProofParams | CreatePasswordProofParams
+  params:
+    | CreateProofParams
+    | CreatePasswordProofParams
+    | ValidateProofParams
+    | FindIdParams
   signature?: Signature
 }
 

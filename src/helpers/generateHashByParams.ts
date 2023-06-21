@@ -1,10 +1,11 @@
 import { HashFunction } from '@zk-kit/incremental-merkle-tree'
+import FindIdParams from 'models/FindIdParams'
 import ValidateProofParams from 'models/ValidateProofParams'
 import VerificationType from 'models/VerificationType'
 import hexlifyString from 'helpers/hexlifyString'
 
 export default function generateHashByParams(
-  params: ValidateProofParams,
+  params: ValidateProofParams | FindIdParams,
   hashFunc: HashFunction
 ) {
   switch (params.type) {

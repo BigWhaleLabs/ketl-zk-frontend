@@ -17,25 +17,33 @@ export default async function onFindAttestationTypeMessage(message: Message) {
 
     const ids = [VerificationId.Founder, VerificationId.VC]
     for (const id of ids) {
-      const hashes = await getHashes(params.id)
+      const hashes = await getHashes(id)
       if (hashes.includes(attestationHash)) {
         return postWebViewMessage({
           data: {
             id,
           },
-          type: Messages.GetAttestationProof,
+          type: Messages.FindResult,
         })
       }
     }
 
-    throw new Error(`Can't find id`)
+    const errorMessage =
+      params.type === '0'
+        ? `Couldn't find invitation for this email address, try another one`
+        : `Couldn't find invitation, try another one`
+
+    const e = new Error(errorMessage)
+    postWebViewMessage({
+      error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+      message: errorMessage,
+      type: Messages.FindResult,
+    })
   } catch (e) {
     postWebViewMessage({
-      data: {
-        e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
-        message: `Can't find id`,
-      },
-      type: Messages.GetProofError,
+      error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+      message: `An unknown error has occurred, please try again`,
+      type: Messages.FindResult,
     })
     console.error(e)
   }

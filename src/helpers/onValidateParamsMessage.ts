@@ -3,14 +3,14 @@ import Messages from 'models/Messages'
 import generateHashByParams from 'helpers/generateHashByParams'
 import getHashes from 'helpers/getHashes'
 import hashByPoseidon from 'helpers/hashByPoseidon'
-import isValidAttestationProofMessage from 'helpers/isValidAttestationProofMessage'
+import isValidParams from 'helpers/isValidParams'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 
 export default async function onValidateParamsMessage(message: Message) {
   try {
     const params = message.params
-    if (!isValidAttestationProofMessage(params))
-      throw new Error('Invalid params for attestation!')
+    if (!isValidParams(params))
+      throw new Error('Invalid params for validation!')
     const hashFunc = await hashByPoseidon()
     const attestationHash = generateHashByParams(params, hashFunc)
     const hashes = await getHashes(params.id)
@@ -20,15 +20,13 @@ export default async function onValidateParamsMessage(message: Message) {
       data: {
         isValid: !hasHash,
       },
-      type: Messages.GetAttestationProof,
+      type: Messages.IsValidResult,
     })
   } catch (e) {
     postWebViewMessage({
-      data: {
-        e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
-        message: `Can't validate params`,
-      },
-      type: Messages.GetProofError,
+      error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+      message: `An unknown error has occurred, please try again`,
+      type: Messages.IsValidResult,
     })
     console.error(e)
   }
