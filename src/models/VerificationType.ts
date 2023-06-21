@@ -1,8 +1,8 @@
 enum VerificationType {
-  email = 'email-unique',
-  twitter = 'twitter',
-  balance = 'balance-unique',
-  token = 'token',
+  email = '0',
+  twitter = '1',
+  balance = '2',
+  token = '3',
 }
 
 export default VerificationType

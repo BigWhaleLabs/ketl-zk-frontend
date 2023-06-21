@@ -23,11 +23,9 @@ export default async function onCreateAttestationProofMessage(
     })
   } catch (e) {
     postWebViewMessage({
-      data: {
-        e: JSON.stringify(e, Object.getOwnPropertyNames(e)),
-        message: `Can't generate valid proof with this token`,
-      },
-      type: Messages.GetProofError,
+      error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+      message: `Can't generate valid proof with this token`,
+      type: Messages.GetAttestationProof,
     })
     console.error(e)
   }
