@@ -1,12 +1,8 @@
-import { buildPoseidon } from 'circomlibjs'
 import { getMerkleTreeInputs } from 'helpers/getMerkleTreeProof'
+import hashByPoseidon from 'helpers/hashByPoseidon'
 
 export default async function getInput(id: string, ids: string[]) {
-  const poseidon = await buildPoseidon()
-  function hashFunc(values: string[]) {
-    const F = poseidon.F
-    return F.toString(poseidon(values))
-  }
+  const hashFunc = await hashByPoseidon()
 
   if (!ids.includes(id)) throw new Error('Invitation not found!')
 

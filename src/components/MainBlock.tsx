@@ -14,6 +14,8 @@ import classnames, {
 } from 'classnames/tailwind'
 import onCreateAttestationProofMessage from 'helpers/onCreateAttestationProofMessage'
 import onCreatePasswordProofMessage from 'helpers/onCreatePasswordProofMessage'
+import onFindAttestationTypeMessage from 'helpers/onFindAttestationTypeMessage'
+import onValidateParamsMessage from 'helpers/onValidateParamsMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import useMessageHandler from 'hooks/useMessageHandler'
 
@@ -35,6 +37,12 @@ export default function MainBlock() {
         break
       case MessageType.CreatePasswordProof:
         await onCreatePasswordProofMessage(message)
+        break
+      case MessageType.ValidateParams:
+        await onValidateParamsMessage(message)
+        break
+      case MessageType.FindAttestationType:
+        await onFindAttestationTypeMessage(message)
         break
       case MessageType.Status:
         postWebViewMessage({

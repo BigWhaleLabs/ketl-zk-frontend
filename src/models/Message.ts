@@ -5,8 +5,8 @@ import Signature from 'models/Signature'
 export enum MessageType {
   CreateAttestationProof = 'CreateAttestationProof',
   CreatePasswordProof = 'CreatePasswordProof',
-  Reset = 'Reset',
-  Error = 'Error',
+  ValidateParams = 'ValidateParams',
+  FindAttestationType = 'FindAttestationType',
   Status = 'Status',
 }
 
