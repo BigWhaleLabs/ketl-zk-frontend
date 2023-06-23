@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'preact/hooks'
-import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
 import Message, { MessageType } from 'models/Message'
 import Messages from 'models/Messages'
