@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'preact/hooks'
-import Description from 'components/Description'
 import KetlLogo from 'icons/KetlLogo'
 import Message, { MessageType } from 'models/Message'
 import Messages from 'models/Messages'
@@ -47,6 +46,7 @@ export default function MainBlock() {
       case MessageType.Status:
         postWebViewMessage({
           data: {},
+          id: message.id,
           type: Messages.Ready,
         })
         break
@@ -65,7 +65,6 @@ export default function MainBlock() {
   return (
     <div className={container}>
       <KetlLogo />
-      <Description />
     </div>
   )
 }

@@ -12,11 +12,13 @@ export default async function onPasswordProofMessage(message: Message) {
 
     postWebViewMessage({
       data,
+      id: message.id,
       type: Messages.GetPasswordProof,
     })
   } catch (e) {
     postWebViewMessage({
       error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+      id: message.id,
       message: `Can't generate valid password proof`,
       type: Messages.GetPasswordProof,
     })

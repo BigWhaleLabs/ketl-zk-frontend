@@ -23,6 +23,7 @@ export default async function onFindAttestationTypeMessage(message: Message) {
           data: {
             id,
           },
+          id: message.id,
           type: Messages.FindResult,
         })
       }
@@ -36,12 +37,14 @@ export default async function onFindAttestationTypeMessage(message: Message) {
     const e = new Error(errorMessage)
     postWebViewMessage({
       error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+      id: message.id,
       message: errorMessage,
       type: Messages.FindResult,
     })
   } catch (e) {
     postWebViewMessage({
       error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+      id: message.id,
       message: `An unknown error has occurred, please try again`,
       type: Messages.FindResult,
     })

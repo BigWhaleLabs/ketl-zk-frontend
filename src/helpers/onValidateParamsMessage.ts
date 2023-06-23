@@ -20,11 +20,13 @@ export default async function onValidateParamsMessage(message: Message) {
       data: {
         isValid: !hasHash,
       },
+      id: message.id,
       type: Messages.IsValidResult,
     })
   } catch (e) {
     postWebViewMessage({
       error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
+      id: message.id,
       message: `An unknown error has occurred, please try again`,
       type: Messages.IsValidResult,
     })
