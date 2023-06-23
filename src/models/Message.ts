@@ -13,6 +13,7 @@ export enum MessageType {
 }
 
 type Message = {
+  id: string
   type: MessageType
   params:
     | CreateProofParams

@@ -47,6 +47,7 @@ export default function MainBlock() {
       case MessageType.Status:
         postWebViewMessage({
           data: {},
+          id: message.id,
           type: Messages.Ready,
         })
         break
@@ -65,7 +66,6 @@ export default function MainBlock() {
   return (
     <div className={container}>
       <KetlLogo />
-      <Description />
     </div>
   )
 }

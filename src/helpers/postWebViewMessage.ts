@@ -4,6 +4,7 @@ import WebViewWindow from 'models/WebViewWindow'
 declare const window: WebViewWindow
 
 interface PostMessage {
+  id?: string
   type: Messages
   data?: unknown
   error?: unknown
