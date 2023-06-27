@@ -1,6 +1,7 @@
 import VerificationId from 'models/VerificationId'
 
 interface CreatePasswordProofParams {
+  isDev?: boolean
   message: string[]
   id: VerificationId
   password: string
