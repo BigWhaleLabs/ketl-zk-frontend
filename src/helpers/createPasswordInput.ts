@@ -15,7 +15,12 @@ export default async function createPasswordInput(
   } = params
 
   const hash = BigNumber.from(entanglement).toHexString().toLowerCase()
-  const hashes = await getBatchOfEntanglementsHashes(id, hash, attestationHash)
+  const hashes = await getBatchOfEntanglementsHashes(
+    id,
+    hash,
+    attestationHash,
+    params.isDev
+  )
   const merkleTreeInputs = await getInput(hash, hashes)
 
   const inputs = {
