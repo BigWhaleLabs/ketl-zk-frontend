@@ -37,6 +37,7 @@ export default function MainBlock() {
       case MessageType.CreatePasswordProof:
         await onCreatePasswordProofMessage(message)
         break
+      // TODO: Validate Params can be removed because it's no longer called by ketl-app
       case MessageType.ValidateParams:
         await onValidateParamsMessage(message)
         break
