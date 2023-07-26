@@ -31,7 +31,7 @@ export default async function getBatchOfEntanglementsHashes(
 
   const hashIndex = filteredEntanglements.indexOf(hash)
 
-  const isUsedAttestation = await checkAttestationHash(attestation)
+  const isUsedAttestation = await checkAttestationHash(attestation, type)
 
   if (isUsedAttestation && hashIndex === -1)
     throw new Error(
