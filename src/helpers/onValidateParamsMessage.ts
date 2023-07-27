@@ -14,11 +14,11 @@ export default async function onValidateParamsMessage(message: Message) {
     const hashFunc = await hashByPoseidon()
     const attestationHash = generateHashByParams(params, hashFunc)
     const hashes = await getHashes(params.id)
-    const hasHash = hashes.includes(attestationHash)
+    const isValid = hashes.includes(attestationHash)
 
     postWebViewMessage({
       data: {
-        isValid: !hasHash,
+        isValid,
       },
       id: message.id,
       type: Messages.IsValidResult,

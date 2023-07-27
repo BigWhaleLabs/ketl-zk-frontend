@@ -1,7 +1,9 @@
 import { BigNumber } from 'ethers'
-import { transferEventInterface } from 'helpers/getKetlAttestationContract'
+import {
+  getKetlAttestationContract,
+  transferEventInterface,
+} from 'helpers/getKetlAttestationContract'
 import checkAttestationHash from 'helpers/checkAttestationHash'
-import ketlAttestationContract from 'helpers/ketlAttestationContract'
 
 function parseEntanglementRegistered({
   data,
@@ -16,8 +18,10 @@ function parseEntanglementRegistered({
 export default async function getBatchOfEntanglementsHashes(
   type: number,
   hash: string,
-  attestation: string
+  attestation: string,
+  isDev?: boolean
 ) {
+  const ketlAttestationContract = getKetlAttestationContract(isDev)
   const batchSize = await ketlAttestationContract.minimumEntanglementCounts(
     type
   )
@@ -31,7 +35,11 @@ export default async function getBatchOfEntanglementsHashes(
 
   const hashIndex = filteredEntanglements.indexOf(hash)
 
-  const isUsedAttestation = await checkAttestationHash(attestation, type)
+  const isUsedAttestation = await checkAttestationHash(
+    ketlAttestationContract,
+    attestation,
+    type
+  )
 
   if (isUsedAttestation && hashIndex === -1)
     throw new Error(

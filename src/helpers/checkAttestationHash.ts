@@ -1,6 +1,7 @@
-import ketlAttestationContract from 'helpers/ketlAttestationContract'
+import { KetlAttestation } from '@big-whale-labs/ketl-attestation-token'
 
 export default async function checkAttestationHash(
+  ketlAttestationContract: KetlAttestation,
   hash: string,
   attestationType: number
 ) {
