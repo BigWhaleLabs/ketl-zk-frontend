@@ -37,7 +37,8 @@ export default async function getBatchOfEntanglementsHashes(
 
   const isUsedAttestation = await checkAttestationHash(
     ketlAttestationContract,
-    attestation
+    attestation,
+    type
   )
 
   if (isUsedAttestation && hashIndex === -1)
