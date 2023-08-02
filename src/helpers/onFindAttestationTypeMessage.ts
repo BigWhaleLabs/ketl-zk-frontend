@@ -2,7 +2,7 @@ import Message from 'models/Message'
 import Messages from 'models/Messages'
 import VerificationId from 'models/VerificationId'
 import generateHashByParams from 'helpers/generateHashByParams'
-import getHashes from 'helpers/getHashes'
+import getHashesMap from 'helpers/getHashesMap'
 import hashByPoseidon from 'helpers/hashByPoseidon'
 import isValidFindIdMessage from 'helpers/isValidFindIdMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
@@ -15,10 +15,16 @@ export default async function onFindAttestationTypeMessage(message: Message) {
     const hashFunc = await hashByPoseidon()
     const attestationHash = generateHashByParams(params, hashFunc)
 
-    const ids = [VerificationId.Founder, VerificationId.VC]
+    const ids = [
+      VerificationId.TopYC,
+      VerificationId.TopVC,
+      VerificationId.Founder,
+      VerificationId.VC,
+      VerificationId.YC,
+    ]
     for (const id of ids) {
-      const hashes = await getHashes(id)
-      if (hashes.includes(attestationHash)) {
+      const hashes = await getHashesMap(id)
+      if (hashes[attestationHash]) {
         return postWebViewMessage({
           data: {
             id,
