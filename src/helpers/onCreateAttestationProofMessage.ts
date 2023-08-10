@@ -1,3 +1,4 @@
+import GeneratorError from 'helpers/GeneratorError'
 import Message from 'models/Message'
 import Messages from 'models/Messages'
 import createAttestationProof from 'helpers/createAttestationProof'
@@ -9,7 +10,7 @@ export default async function onCreateAttestationProofMessage(
 ) {
   try {
     if (!isValidAttestationProofMessage(message.params) || !message.signature)
-      throw new Error('Invalid data for attestation proof!')
+      throw new GeneratorError('Invalid parameters for verification')
     const attestationProof = await createAttestationProof(
       message.params,
       message.signature
@@ -26,7 +27,9 @@ export default async function onCreateAttestationProofMessage(
     postWebViewMessage({
       error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
       id: message.id,
-      message: `Can't generate valid proof with this token`,
+      message: GeneratorError.isGeneratorError(e)
+        ? e.message
+        : `An error occurred while verification, please try again`,
       type: Messages.GetAttestationProof,
     })
     console.error(e)

@@ -1,3 +1,4 @@
+import GeneratorError from 'helpers/GeneratorError'
 import Message from 'models/Message'
 import Messages from 'models/Messages'
 import createPasswordProof from 'helpers/createPasswordProof'
@@ -7,7 +8,8 @@ import postWebViewMessage from 'helpers/postWebViewMessage'
 export default async function onPasswordProofMessage(message: Message) {
   try {
     if (!isValidPasswordProofMessage(message.params))
-      throw new Error('Invalid data for password proof!')
+      throw new GeneratorError('Invalid data for password proof!')
+
     const data = await createPasswordProof(message.params)
 
     postWebViewMessage({
@@ -19,7 +21,9 @@ export default async function onPasswordProofMessage(message: Message) {
     postWebViewMessage({
       error: JSON.stringify(e, Object.getOwnPropertyNames(e)),
       id: message.id,
-      message: `Can't generate valid password proof`,
+      message: GeneratorError.isGeneratorError(e)
+        ? e.message
+        : `An error occurred while preparing data for registration, please try again`,
       type: Messages.GetPasswordProof,
     })
     console.error(e)
