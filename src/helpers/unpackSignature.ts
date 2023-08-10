@@ -1,27 +1,38 @@
 import { Scalar } from 'ffjavascript'
 import { utils } from 'ethers'
+import GeneratorError from 'helpers/GeneratorError'
 import buildBabyJub, { BabyJub } from 'circomlibjs/babyjub'
 
 let babyJub: BabyJub
 
 export default async function unpackSignature(packedSignature: string) {
-  // Create BabyJub
-  if (!babyJub) babyJub = await buildBabyJub()
+  try {
+    // Create BabyJub
+    if (!babyJub) babyJub = await buildBabyJub()
 
-  const F = babyJub.F
+    const F = babyJub.F
 
-  // Unpack signature
-  const signatureBuffer = utils.arrayify(packedSignature)
-  const signature = {
-    R8: babyJub.unpackPoint(signatureBuffer.slice(0, 32)),
-    S: Scalar.fromRprLE(signatureBuffer, 32, 32),
-  }
+    // Unpack signature
+    const signatureBuffer = utils.arrayify(packedSignature)
+    const signature = {
+      R8: babyJub.unpackPoint(signatureBuffer.slice(0, 32)),
+      S: Scalar.fromRprLE(signatureBuffer, 32, 32),
+    }
 
-  if (!signature.R8) throw new Error('Unable to unpack the signature')
+    if (!signature.R8)
+      throw new GeneratorError('Unable to unpack the signature')
 
-  return {
-    R8x: F.toObject(signature.R8[0]).toString(),
-    R8y: F.toObject(signature.R8[1]).toString(),
-    S: signature.S.toString(),
+    return {
+      R8x: F.toObject(signature.R8[0]).toString(),
+      R8y: F.toObject(signature.R8[1]).toString(),
+      S: signature.S.toString(),
+    }
+  } catch (e) {
+    throw new GeneratorError(
+      'Failed to correctly parse data, possibly invalid token',
+      {
+        cause: e,
+      }
+    )
   }
 }
