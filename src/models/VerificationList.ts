@@ -6,4 +6,5 @@ export default [
   VerificationId.Founder,
   VerificationId.VC,
   VerificationId.YC,
+  VerificationId.KetlTeam,
 ]
