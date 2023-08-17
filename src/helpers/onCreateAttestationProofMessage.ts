@@ -37,12 +37,12 @@ export default async function onCreateAttestationProofMessage(
       type: Messages.GetProofStatus,
     })
 
-    const proof = await generateAttestationProof(input)
+    const attestationProof = await generateAttestationProof(input)
 
     postWebViewMessage({
       data: {
         attestationMessage: message.signature.message,
-        attestationProof: proof,
+        attestationProof,
         status: ProofResultStatus.ProofGenerated,
       },
       id: message.id,
