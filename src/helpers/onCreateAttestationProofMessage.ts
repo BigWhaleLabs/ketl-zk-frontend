@@ -1,7 +1,9 @@
 import GeneratorError from 'helpers/GeneratorError'
 import Message from 'models/Message'
 import Messages from 'models/Messages'
-import createAttestationProof from 'helpers/createAttestationProof'
+import ProofResultStatus from 'models/ProofResultStatus'
+import createAttestationInput from 'helpers/createAttestationInput'
+import generateAttestationProof from 'helpers/generateAttestationProof'
 import isValidAttestationProofMessage from 'helpers/isValidAttestationProofMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 
@@ -9,16 +11,39 @@ export default async function onCreateAttestationProofMessage(
   message: Message
 ) {
   try {
+    postWebViewMessage({
+      data: {
+        status: ProofResultStatus.Validating,
+      },
+      id: message.id,
+      type: Messages.GetProofStatus,
+    })
+
     if (!isValidAttestationProofMessage(message.params) || !message.signature)
       throw new GeneratorError('Invalid parameters for verification')
-    const attestationProof = await createAttestationProof(
+
+    const input = await createAttestationInput(
       message.params,
       message.signature
     )
+
+    postWebViewMessage({
+      data: {
+        attestationMessage: message.signature.message,
+        attestationProof: null,
+        status: ProofResultStatus.ProofGeneration,
+      },
+      id: message.id,
+      type: Messages.GetProofStatus,
+    })
+
+    const attestationProof = await generateAttestationProof(input)
+
     postWebViewMessage({
       data: {
         attestationMessage: message.signature.message,
         attestationProof,
+        status: ProofResultStatus.ProofGenerated,
       },
       id: message.id,
       type: Messages.GetAttestationProof,
