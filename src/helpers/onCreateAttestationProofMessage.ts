@@ -1,16 +1,11 @@
 import GeneratorError from 'helpers/GeneratorError'
 import Message from 'models/Message'
 import Messages from 'models/Messages'
+import ProofResultStatus from 'models/ProofResultStatus'
 import createAttestationInput from 'helpers/createAttestationInput'
 import generateAttestationProof from 'helpers/generateAttestationProof'
 import isValidAttestationProofMessage from 'helpers/isValidAttestationProofMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
-
-enum ProofResultStatus {
-  Validating,
-  ProofGeneration,
-  ProofGenerated,
-}
 
 export default async function onCreateAttestationProofMessage(
   message: Message
