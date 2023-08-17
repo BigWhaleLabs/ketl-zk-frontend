@@ -18,13 +18,6 @@ export default async function onFindAttestationTypeMessage(message: Message) {
 
     const ids = params?.accountTypes || VerificationList
     for (const id of ids) {
-      postWebViewMessage({
-        data: {
-          message: `check type ${id}`,
-        },
-        id: '0',
-        type: Messages.Debug,
-      })
       const hashes = await getHashes(id)
       const hashSet = new Set(hashes)
       if (hashSet.has(attestationHash)) {
