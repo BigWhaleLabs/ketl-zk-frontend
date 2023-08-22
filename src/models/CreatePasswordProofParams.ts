@@ -1,9 +1,9 @@
-import VerificationId from 'models/VerificationId'
+import AttestationType from 'models/AttestationType'
 
 interface CreatePasswordProofParams {
   isDev?: boolean
   message: string[]
-  id: VerificationId
+  id: AttestationType
   password: string
   entanglement: string
   attestationHash: string
