@@ -1,10 +1,8 @@
-import VerificationId from 'models/VerificationId'
-import VerificationType from 'models/VerificationType'
+import AttestationType from 'models/AttestationType'
 
 interface CreateProofParams {
   password: string
-  id: VerificationId
-  type: VerificationType
+  id: AttestationType
 }
 
 export default CreateProofParams

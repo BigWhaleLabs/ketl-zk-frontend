@@ -1,4 +1,4 @@
-enum VerificationId {
+enum AttestationType {
   KetlTeam = 0,
   YC = 1,
   Founder = 2,
@@ -7,4 +7,4 @@ enum VerificationId {
   TopVC = 5,
 }
 
-export default VerificationId
+export default AttestationType

@@ -1,10 +1,10 @@
-import VerificationId from 'models/VerificationId'
+import AttestationType from 'models/AttestationType'
 import VerificationType from 'models/VerificationType'
 
 interface ValidateProofParams {
   token?: string
   email?: string
-  id: VerificationId
+  id: AttestationType
   type: VerificationType
 }
 
