@@ -4,7 +4,7 @@ import AttestationType from 'models/AttestationType'
 import GeneratorError from 'helpers/GeneratorError'
 import env from 'helpers/env'
 
-export default async function getMerkleProof(
+export default async function getMerkleInputs(
   attestationType: AttestationType,
   hash: string
 ) {

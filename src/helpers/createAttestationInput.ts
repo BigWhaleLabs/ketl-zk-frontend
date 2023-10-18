@@ -1,7 +1,7 @@
 import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
 import getEddsaPublicKey from 'helpers/getEddsaPublicKey'
-import getMerkleProof from 'helpers/getMerkleProof'
+import getMerkleInputs from 'helpers/getMerkleInputs'
 import unpackSignature from 'helpers/unpackSignature'
 
 export default async function createAttestationInput(
@@ -9,7 +9,7 @@ export default async function createAttestationInput(
   { message, signature }: Signature
 ) {
   const hash = message[1]
-  const merkleTreeInputs = await getMerkleProof(params.id, hash)
+  const merkleTreeInputs = await getMerkleInputs(params.id, hash)
   const eddsaPublicKey = await getEddsaPublicKey()
   const { R8x, R8y, S } = await unpackSignature(signature)
 
