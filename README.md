@@ -15,6 +15,7 @@
 | `VITE_KETL_ATTESTATION_CONTRACT_ADDRESS`     | Ketl Attestation contract address, that stores some app data             |
 | `VITE_DEV_KETL_ATTESTATION_CONTRACT_ADDRESS` | Ketl Attestation dev contract address, that stores some app data         |
 | `VITE_KETL_HASHES_SOURCE`                    | Link to merkle tree hashes for Ketl                                      |
+| `VITE_KETL_INVITES_BACKEND`                  | [ketl-invites](https://github.com/BigWhaleLabs/ketl-invites) backend     |
 
 Also, please, consider looking at `.env.sample`.
 

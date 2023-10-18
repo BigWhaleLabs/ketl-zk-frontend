@@ -19,5 +19,8 @@ export default cleanEnv(import.meta.env, {
     default:
       'https://raw.githubusercontent.com/BigWhaleLabs/ketl-attestation-token/main',
   }),
+  VITE_KETL_INVITES_BACKEND: str({
+    default: 'https://bwl-invites.dwfjvu.easypanel.host',
+  }),
   VITE_VERIFY_URL: str({ default: VERIFY_URL }),
 })
