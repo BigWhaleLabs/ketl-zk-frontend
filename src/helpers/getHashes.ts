@@ -4,7 +4,7 @@ import env from 'helpers/env'
 export default async function getHashes(id: number) {
   try {
     const response = await fetch(
-      `${env.VITE_KETL_HASHES_SOURCE}/hashes/${id}.json`
+      `${env.VITE_KETL_HASHES_SOURCE}/merkle/hashes?attestationType=${id}`
     )
 
     return response.json()

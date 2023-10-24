@@ -16,8 +16,7 @@ export default cleanEnv(import.meta.env, {
     default: PROD_KETL_ATTESTATION_CONTRACT,
   }),
   VITE_KETL_HASHES_SOURCE: str({
-    default:
-      'https://raw.githubusercontent.com/BigWhaleLabs/ketl-attestation-token/main',
+    default: 'https://bwl-invites.dwfjvu.easypanel.host',
   }),
   VITE_VERIFY_URL: str({ default: VERIFY_URL }),
 })
