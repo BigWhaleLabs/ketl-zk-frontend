@@ -14,7 +14,7 @@
 | `VITE_ETH_RPC`                               | Ethereum node RPC URI (defaults to @bwl/constants)                       |
 | `VITE_KETL_ATTESTATION_CONTRACT_ADDRESS`     | Ketl Attestation contract address, that stores some app data             |
 | `VITE_DEV_KETL_ATTESTATION_CONTRACT_ADDRESS` | Ketl Attestation dev contract address, that stores some app data         |
-| `VITE_KETL_HASHES_SOURCE`                    | Link to merkle tree hashes for Ketl                                      |
+| `VITE_KETL_INVITES_BACKEND`                  | Link to merkle tree hashes for Ketl                                      |
 
 Also, please, consider looking at `.env.sample`.
 
