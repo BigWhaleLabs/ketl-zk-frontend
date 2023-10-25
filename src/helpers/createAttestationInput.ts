@@ -1,18 +1,29 @@
 import CreateProofParams from 'models/CreateProofParams'
 import Signature from 'models/Signature'
 import getEddsaPublicKey from 'helpers/getEddsaPublicKey'
-import getHashes from 'helpers/getHashes'
-import getInput from 'helpers/getInput'
+import getProof from 'helpers/getProof'
 import unpackSignature from 'helpers/unpackSignature'
+
+async function generateMerkleTreeInputs(
+  params: CreateProofParams,
+  hash: string
+) {
+  const { pathIndices, siblings } = await getProof(params.id, hash)
+
+  return {
+    pathElements: siblings,
+    pathIndices,
+  }
+}
 
 export default async function createAttestationInput(
   params: CreateProofParams,
-  { message, signature }: Signature
+  { message, publicKey, signature }: Signature
 ) {
-  const hashes = await getHashes(params.id)
-  const eddsaPublicKey = await getEddsaPublicKey()
-  const hash = message[1]
-  const merkleTreeInputs = await getInput(hash, hashes)
+  const eddsaPublicKey = publicKey ?? (await getEddsaPublicKey())
+  const merkleTreeInputs =
+    params.merkleTreeInputs ??
+    (await generateMerkleTreeInputs(params, message[1]))
   const { R8x, R8y, S } = await unpackSignature(signature)
 
   const inputs = {
