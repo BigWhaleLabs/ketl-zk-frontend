@@ -7,7 +7,7 @@ export default async function getHashes(id: number) {
       `${env.VITE_KETL_INVITES_BACKEND}/merkle/hashes?attestationType=${id}`
     )
 
-    return response.json()
+    return await response.json()
   } catch (e) {
     throw new GeneratorError(
       `Can't get invitation list, please try again later`,

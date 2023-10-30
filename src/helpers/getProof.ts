@@ -7,7 +7,7 @@ export default async function getProof(id: number, hash: string) {
       `${env.VITE_KETL_INVITES_BACKEND}/merkle/proof?attestationType=${id}&hash=${hash}`
     )
 
-    return response.json() as Promise<{
+    return (await response.json()) as Promise<{
       siblings: string[]
       pathIndices: number[]
     }>
