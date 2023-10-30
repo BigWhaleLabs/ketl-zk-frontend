@@ -1,4 +1,5 @@
 import AttestationType from 'models/AttestationType'
+import MerkleTreeInputs from 'models/MerkleTreeInputs'
 
 interface CreatePasswordProofParams {
   isDev?: boolean
@@ -7,6 +8,7 @@ interface CreatePasswordProofParams {
   password: string
   entanglement: string
   attestationHash: string
+  merkleTreeInputs?: MerkleTreeInputs
 }
 
 export default CreatePasswordProofParams
