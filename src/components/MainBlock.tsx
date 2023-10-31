@@ -13,8 +13,6 @@ import classnames, {
 } from 'classnames/tailwind'
 import onCreateAttestationProofMessage from 'helpers/onCreateAttestationProofMessage'
 import onCreatePasswordProofMessage from 'helpers/onCreatePasswordProofMessage'
-import onFindAttestationTypeMessage from 'helpers/onFindAttestationTypeMessage'
-import onValidateParamsMessage from 'helpers/onValidateParamsMessage'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 import useMessageHandler from 'hooks/useMessageHandler'
 
@@ -37,30 +35,20 @@ export default function MainBlock() {
       case MessageType.CreatePasswordProof:
         await onCreatePasswordProofMessage(message)
         break
-      // TODO: Validate Params can be removed because it's no longer called by ketl-app
-      case MessageType.ValidateParams:
-        await onValidateParamsMessage(message)
-        break
-      case MessageType.FindAttestationType:
-        await onFindAttestationTypeMessage(message)
-        break
-      case MessageType.Status:
-        postWebViewMessage({
-          data: {},
-          id: message.id,
-          type: Messages.Ready,
-        })
-        break
     }
   }, [])
 
   useMessageHandler(onMessage)
 
   useEffect(() => {
-    postWebViewMessage({
-      data: {},
-      type: Messages.Ready,
-    })
+    const interval = setInterval(() => {
+      postWebViewMessage({
+        data: {},
+        type: Messages.Ready,
+      })
+    }, 1000)
+
+    return () => clearInterval(interval)
   }, [])
 
   return (
