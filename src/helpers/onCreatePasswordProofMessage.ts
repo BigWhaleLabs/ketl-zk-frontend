@@ -3,6 +3,7 @@ import Message from 'models/Message'
 import Messages from 'models/Messages'
 import createPasswordProof from 'helpers/createPasswordProof'
 import isValidPasswordProofMessage from 'helpers/isValidPasswordProofMessage'
+import onProofProgress from 'helpers/onProofProgress'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 
 export default async function onPasswordProofMessage(message: Message) {
@@ -10,7 +11,7 @@ export default async function onPasswordProofMessage(message: Message) {
     if (!isValidPasswordProofMessage(message.params))
       throw new GeneratorError('Invalid data for password proof!')
 
-    const data = await createPasswordProof(message.params)
+    const data = await createPasswordProof(message.params, onProofProgress)
 
     postWebViewMessage({
       data,
