@@ -1570,10 +1570,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@big-whale-labs/constants@npm:0.2.12":
-  version: 0.2.12
-  resolution: "@big-whale-labs/constants@npm:0.2.12"
-  checksum: 9bc15041ac9819bfdf15cf068c6e440304b9bf65e65d0ab00169fd09f50581d077f6b32bf311be19019c75eb9aada411759ca763ac4c695365e18286fa0b1043
+"@big-whale-labs/constants@npm:0.2.26":
+  version: 0.2.26
+  resolution: "@big-whale-labs/constants@npm:0.2.26"
+  checksum: 78cf8ad50032104184f8483d58ad0223dff3b4ab431192f833ca5053f9bfccd3785a16c8a74d1f508839b8a6d019718c5af48bc0d9e2fd5e6907731bc6cfc815
   languageName: node
   linkType: hard
 
@@ -5404,9 +5404,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001426, caniuse-lite@npm:^1.0.30001449":
-  version: 1.0.30001456
-  resolution: "caniuse-lite@npm:1.0.30001456"
-  checksum: c2cc479962149abd09a25b64699ee7484d9c433db2bad0a489f7b51b09a463c991f6efd7b8e201bc1a1ccf3294263f88503a3adf0a57db9046939ee7e58b76a6
+  version: 1.0.30001553
+  resolution: "caniuse-lite@npm:1.0.30001553"
+  checksum: 45d6a2a3c3a098c8093a4c8883fceafb4bbf59d96f6fd5bb381ba4581d07eecbe0ede4f55383f0d49374154ff6a808bd90fbe32b17ccd1738034d2579787b33c
   languageName: node
   linkType: hard
 
@@ -10178,7 +10178,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ketl-zk-frontend@workspace:."
   dependencies:
-    "@big-whale-labs/constants": 0.2.12
+    "@big-whale-labs/constants": 0.2.26
     "@big-whale-labs/eslint-config-bwl": ^2.1.5
     "@big-whale-labs/ketl-attestation-token": 0.1.0
     "@big-whale-labs/prettier-config": ^1.1.3

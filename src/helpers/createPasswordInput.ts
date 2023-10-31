@@ -3,17 +3,8 @@ import CreatePasswordProofParams from 'models/CreatePasswordProofParams'
 import getBatchOfEntanglementsHashes from 'helpers/getBatchOfEntanglementsHashes'
 import getInput from 'helpers/getInput'
 
-export default async function createPasswordInput(
-  params: CreatePasswordProofParams
-) {
-  const {
-    attestationHash,
-    entanglement,
-    id,
-    message: attestationMessage,
-    password,
-  } = params
-
+async function generateMerkleTreeInputs(params: CreatePasswordProofParams) {
+  const { attestationHash, entanglement, id } = params
   const hash = BigNumber.from(entanglement).toHexString().toLowerCase()
   const hashes = await getBatchOfEntanglementsHashes(
     id,
@@ -21,7 +12,17 @@ export default async function createPasswordInput(
     attestationHash,
     params.isDev
   )
-  const merkleTreeInputs = await getInput(hash, hashes)
+
+  return getInput(hash, hashes)
+}
+
+export default async function createPasswordInput(
+  params: CreatePasswordProofParams
+) {
+  const { message: attestationMessage, password } = params
+
+  const merkleTreeInputs =
+    params.merkleTreeInputs ?? (await generateMerkleTreeInputs(params))
 
   const inputs = {
     attestationMessage,
