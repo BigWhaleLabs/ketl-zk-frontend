@@ -40,7 +40,7 @@ export default async function onCreateAttestationProofMessage(
 
     const attestationProof = await generateAttestationProof(
       input,
-      onProofProgress
+      onProofProgress(message.id)
     )
 
     postWebViewMessage({

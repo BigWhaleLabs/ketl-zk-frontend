@@ -11,7 +11,10 @@ export default async function onPasswordProofMessage(message: Message) {
     if (!isValidPasswordProofMessage(message.params))
       throw new GeneratorError('Invalid data for password proof!')
 
-    const data = await createPasswordProof(message.params, onProofProgress)
+    const data = await createPasswordProof(
+      message.params,
+      onProofProgress(message.id)
+    )
 
     postWebViewMessage({
       data,
