@@ -5,6 +5,7 @@ import ProofResultStatus from 'models/ProofResultStatus'
 import createAttestationInput from 'helpers/createAttestationInput'
 import generateAttestationProof from 'helpers/generateAttestationProof'
 import isValidAttestationProofMessage from 'helpers/isValidAttestationProofMessage'
+import onProofProgress from 'helpers/onProofProgress'
 import postWebViewMessage from 'helpers/postWebViewMessage'
 
 export default async function onCreateAttestationProofMessage(
@@ -37,7 +38,10 @@ export default async function onCreateAttestationProofMessage(
       type: Messages.GetProofStatus,
     })
 
-    const attestationProof = await generateAttestationProof(input)
+    const attestationProof = await generateAttestationProof(
+      input,
+      onProofProgress(message.id)
+    )
 
     postWebViewMessage({
       data: {
