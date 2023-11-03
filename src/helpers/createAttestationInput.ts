@@ -20,7 +20,12 @@ export default async function createAttestationInput(
   params: CreateProofParams,
   { message, publicKey, signature }: Signature
 ) {
-  const eddsaPublicKey = publicKey ?? (await getEddsaPublicKey())
+  const eddsaPublicKey = publicKey ?? {
+    x:
+      '3022588728262621016474471722865235652573366639695808085248430151628770415819',
+    y:
+      '14057266046546817928140094441885285376703482229051018203400595159797179656041',
+  }
   const merkleTreeInputs =
     params.merkleTreeInputs ??
     (await generateMerkleTreeInputs(params, message[1]))
