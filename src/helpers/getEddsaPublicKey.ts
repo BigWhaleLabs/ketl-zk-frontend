@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 // https://attestor.bwl.gg/v0.2.1/verify/eddsa-public-key
 export default function getEddsaPublicKey() {
   return {
