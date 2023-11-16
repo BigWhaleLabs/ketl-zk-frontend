@@ -41,14 +41,14 @@ export default async function getBatchOfEntanglementsHashes(
     type
   )
 
+  if (hashIndex === -1) {
+    throw new Error(`This hash isn't among those added to the blockchain`)
+  }
+
   if (isUsedAttestation && hashIndex === -1)
     throw new Error(
       `This verification method has already been used for another account!`
     )
-
-  if (hashIndex === -1) {
-    throw new Error(`This hash isn't among those added to the blockchain`)
-  }
 
   if (batchSize > filteredEntanglements.length)
     throw new Error(`Batch hasn't been completed`)
