@@ -4,6 +4,7 @@ import Messages from 'models/Messages'
 import ProofResultStatus from 'models/ProofResultStatus'
 import createAttestationInput from 'helpers/createAttestationInput'
 import generateAttestationProof from 'helpers/generateAttestationProof'
+import handleError from 'helpers/handleError'
 import isValidAttestationProofMessage from 'helpers/isValidAttestationProofMessage'
 import onProofProgress from 'helpers/onProofProgress'
 import postWebViewMessage from 'helpers/postWebViewMessage'
@@ -61,6 +62,7 @@ export default async function onCreateAttestationProofMessage(
         : `An error occurred while verification, please try again`,
       type: Messages.GetAttestationProof,
     })
+    handleError({ e })
     console.error(e)
   }
 }
