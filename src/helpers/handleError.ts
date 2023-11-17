@@ -13,7 +13,6 @@ export default function handleError({
   const message = parseError(e)
   if (sendToSentry) {
     if (e instanceof Error) {
-      console.log('catch')
       Sentry.captureException(e)
     } else {
       Sentry.captureException(new Error(message, { cause: e }))
