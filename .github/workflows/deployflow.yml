@@ -28,6 +28,7 @@ jobs:
         shell: bash
         env:
           VITE_ETH_RPC: ${{ secrets.VITE_ETH_RPC }}
+          VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact
