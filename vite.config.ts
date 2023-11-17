@@ -15,6 +15,7 @@ export default defineConfig({
   },
   build: {
     target: 'es2020',
+
     rollupOptions: {
       plugins: ([
         visualizer({
@@ -32,10 +33,13 @@ export default defineConfig({
         removeConsole(),
       ] as unknown[]) as Plugin[],
     },
+
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+
     outDir: './docs',
+    sourcemap: true,
   },
   optimizeDeps: {
     esbuildOptions: {
