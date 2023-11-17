@@ -19,5 +19,6 @@ export default cleanEnv(import.meta.env, {
   VITE_KETL_INVITES_BACKEND: str({
     default: KETL_INVITES_BACKEND,
   }),
+  VITE_SENTRY_DSN: str(),
   VITE_VERIFY_URL: str({ default: VERIFY_URL }),
 })

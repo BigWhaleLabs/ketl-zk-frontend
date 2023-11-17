@@ -2,6 +2,7 @@ import GeneratorError from 'helpers/GeneratorError'
 import Message from 'models/Message'
 import Messages from 'models/Messages'
 import createPasswordProof from 'helpers/createPasswordProof'
+import handleError from 'helpers/handleError'
 import isValidPasswordProofMessage from 'helpers/isValidPasswordProofMessage'
 import onProofProgress from 'helpers/onProofProgress'
 import postWebViewMessage from 'helpers/postWebViewMessage'
@@ -30,6 +31,7 @@ export default async function onPasswordProofMessage(message: Message) {
         : `An error occurred while preparing data for registration, please try again`,
       type: Messages.GetPasswordProof,
     })
+    handleError({ e })
     console.error(e)
   }
 }

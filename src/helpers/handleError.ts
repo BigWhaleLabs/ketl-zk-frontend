@@ -1,10 +1,21 @@
-export default function handleError(error: unknown) {
-  let output = ''
-  if (error instanceof Error) output = error.message
-  if (typeof error === 'string') output = error
+import Sentry from 'helpers/initSentry'
+import parseError from 'helpers/parseError'
 
-  if (output.includes('to BigInt') || output.includes('invalid BigInt'))
-    return 'Please provide a valid token'
-  if (output.includes('The leaf')) return "Looks like you're not invited"
-  return output
+export default function handleError({
+  e,
+  sendToSentry = true,
+}: {
+  e: unknown
+  sendToSentry?: boolean
+}) {
+  console.error('Handled error\n', e)
+
+  const message = parseError(e)
+  if (sendToSentry) {
+    if (e instanceof Error) {
+      Sentry.captureException(e)
+    } else {
+      Sentry.captureException(new Error(message, { cause: e }))
+    }
+  }
 }
