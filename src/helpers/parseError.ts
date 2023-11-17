@@ -5,7 +5,6 @@ interface MessageObject {
 }
 
 export function stringifyError(e: unknown) {
-  if (typeof e === 'undefined') return e
   if (typeof e === 'string') return e
   if (isAxiosError(e) && e.response?.data?.message)
     return e.response?.data?.message
